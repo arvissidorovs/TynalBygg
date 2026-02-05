@@ -101,7 +101,7 @@ function AppContent() {
           {/* CTA & Language Switcher */}
           <div className="flex items-center gap-6">{/* Changed from gap-4 to gap-6 */}
             {/* CTA Button */}
-            <button 
+            <button
               className="bg-white text-gray-900 px-6 py-3 font-medium text-sm tracking-wide transition-all hover:bg-gray-300 hover:shadow-lg rounded-md"
               style={{ fontFamily: 'Inter, sans-serif' }}
               onClick={() => window.open('https://tally.so/r/7Rx0B9', '_blank')}
@@ -178,10 +178,10 @@ function AppContent() {
 
       {/* All Sections Below Hero */}
       <HeroFeatures />
+      <WhyChooseUs />
       <Services />
       <About />
       <Gallery />
-      <WhyChooseUs />
       <Contact />
 
       {/* Footer */}
