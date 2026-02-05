@@ -74,15 +74,15 @@ const scaffoldingOptions = [
 
 export function Services() {
   const { t } = useLanguage();
-  
+
   return (
     <section id="services" className="bg-white py-24 px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 
+          <h2
             className="text-5xl md:text-6xl mb-4"
-            style={{ 
+            style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,
               color: '#1a1a1a'
@@ -90,7 +90,7 @@ export function Services() {
           >
             {t('services.title')}
           </h2>
-          <p 
+          <p
             className="text-gray-600 text-lg max-w-2xl mx-auto"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
@@ -101,7 +101,7 @@ export function Services() {
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {services.map((service, index) => (
-            <div 
+            <div
               key={index}
               className="group cursor-pointer"
             >
@@ -112,9 +112,9 @@ export function Services() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <h3 
+              <h3
                 className="text-xl md:text-2xl mb-2"
-                style={{ 
+                style={{
                   fontFamily: 'Oswald, sans-serif',
                   fontWeight: 600,
                   color: '#1a1a1a'
@@ -122,7 +122,7 @@ export function Services() {
               >
                 {t(service.titleKey)}
               </h3>
-              <p 
+              <p
                 className="text-gray-600 leading-relaxed text-sm"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
@@ -135,9 +135,9 @@ export function Services() {
         {/* Scaffolding Rental Section */}
         <div className="mt-20 border-t border-gray-200 pt-20">
           <div className="text-center mb-12">
-            <h2 
+            <h2
               className="text-4xl md:text-5xl mb-4"
-              style={{ 
+              style={{
                 fontFamily: 'Oswald, sans-serif',
                 fontWeight: 600,
                 color: '#1a1a1a'
@@ -145,7 +145,7 @@ export function Services() {
             >
               {t('services.scaffolding')}
             </h2>
-            <p 
+            <p
               className="text-gray-600 text-lg"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
@@ -158,9 +158,9 @@ export function Services() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" style={{ fontFamily: 'Inter, sans-serif' }}>
               {scaffoldingOptions.map((option, index) => (
                 <div key={index} className="bg-gray-50 p-6 border border-gray-200">
-                  <h3 
+                  <h3
                     className="text-3xl mb-2 text-center"
-                    style={{ 
+                    style={{
                       fontFamily: 'Oswald, sans-serif',
                       fontWeight: 600,
                       color: '#1a1a1a'

@@ -13,6 +13,17 @@ function AppContent() {
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Redirect to primary domain unless using the backdoor path.
+  useEffect(() => {
+    const { hostname, pathname, search, hash } = window.location;
+    const isBackdoor = pathname.startsWith('/backdoor');
+    const isPrimaryDomain = hostname === 'www.tinalbygg.se';
+
+    if (!isBackdoor && !isPrimaryDomain) {
+      window.location.replace(`https://www.tinalbygg.se${pathname}${search}${hash}`);
+    }
+  }, []);
+
   // Detect scroll position
   useEffect(() => {
     const handleScroll = () => {
@@ -56,21 +67,19 @@ function AppContent() {
             {/* Placeholder - Replace with actual video URL */}
             <source src="/path-to-your-video.mp4" type="video/mp4" />
           </video>
-          
+
           {/* Dark Overlay for Readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
         </div>
 
         {/* Navigation Bar */}
-        <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-16 backdrop-blur-md transition-all duration-300 ${
-          isScrolled ? 'py-2 bg-black/60' : 'py-5 bg-black/30'
-        }`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-16 backdrop-blur-md transition-all duration-300 ${isScrolled ? 'py-2 bg-black/30' : 'py-5 bg-black/30'
+          }`}>
           {/* Logo */}
-          <div 
-            className={`text-white font-semibold tracking-wide cursor-pointer transition-all duration-300 ${
-              isScrolled ? 'text-base' : 'text-lg'
-            }`}
-            style={{ fontFamily: 'Inter, sans-serif' }} 
+          <div
+            className={`text-white font-semibold tracking-wide cursor-pointer transition-all duration-300 ${isScrolled ? 'text-base' : 'text-lg'
+              }`}
+            style={{ fontFamily: 'Inter, sans-serif' }}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             TINAL BYGG AB
@@ -78,29 +87,24 @@ function AppContent() {
 
           {/* Navigation Menu */}
           <ul className="hidden md:flex items-center gap-6 text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
-            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${
-              isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
-            }`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
+              }`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               {t('nav.home')}
             </li>
-            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${
-              isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
-            }`} onClick={() => scrollToSection('about')}>
+            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
+              }`} onClick={() => scrollToSection('about')}>
               {t('nav.about')}
             </li>
-            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${
-              isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
-            }`} onClick={() => scrollToSection('services')}>
+            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
+              }`} onClick={() => scrollToSection('services')}>
               {t('nav.services')}
             </li>
-            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${
-              isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
-            }`} onClick={() => scrollToSection('gallery')}>
+            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
+              }`} onClick={() => scrollToSection('gallery')}>
               {t('nav.gallery')}
             </li>
-            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${
-              isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
-            }`} onClick={() => scrollToSection('contact')}>
+            <li className={`cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide ${isScrolled ? 'text-sm' : (language === 'lv' ? 'text-[15px]' : 'text-base')
+              }`} onClick={() => scrollToSection('contact')}>
               {t('nav.contact')}
             </li>
           </ul>
@@ -108,7 +112,7 @@ function AppContent() {
           {/* CTA & Language Switcher */}
           <div className="flex items-center gap-6">{/* Changed from gap-4 to gap-6 */}
             {/* CTA Button */}
-            <button 
+            <button
               className="bg-white text-gray-900 px-6 py-3 font-medium text-sm tracking-wide transition-all hover:bg-gray-300 hover:shadow-lg"
               style={{ fontFamily: 'Inter, sans-serif' }}
               onClick={() => window.open('https://tally.so/r/7Rx0B9', '_blank')}
@@ -126,7 +130,7 @@ function AppContent() {
                 <Globe className="w-5 h-5" />
                 <span className="text-sm font-medium uppercase">{language}</span>
               </button>
-              
+
               {showLangMenu && (
                 <div className="absolute top-full mt-2 right-0 bg-white rounded shadow-lg py-2 min-w-[140px]">
                   {languages.map((lang) => (
@@ -136,11 +140,10 @@ function AppContent() {
                         setLanguage(lang.code);
                         setShowLangMenu(false);
                       }}
-                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                        language === lang.code 
-                          ? 'bg-gray-100 text-gray-900 font-semibold' 
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
+                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${language === lang.code
+                        ? 'bg-gray-100 text-gray-900 font-semibold'
+                        : 'text-gray-700 hover:bg-gray-50'
+                        }`}
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
                       {lang.label}
@@ -154,9 +157,9 @@ function AppContent() {
 
         {/* Hero Content - Centered */}
         <div className="relative z-10 flex h-[calc(100vh-88px)] flex-col items-center justify-center px-8 text-center">
-          <h1 
+          <h1
             className="text-white mb-6 text-6xl md:text-7xl lg:text-8xl tracking-tight"
-            style={{ 
+            style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,
               letterSpacing: '-0.02em'
@@ -164,8 +167,8 @@ function AppContent() {
           >
             {t('hero.title')}
           </h1>
-          
-          <p 
+
+          <p
             className="text-white/90 text-xl md:text-2xl lg:text-3xl font-light tracking-wide max-w-2xl"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >

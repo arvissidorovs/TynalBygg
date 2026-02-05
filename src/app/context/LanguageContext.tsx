@@ -19,12 +19,12 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
     'nav.cta': 'Fill in application form',
-    
+
     // Hero
     'hero.title': 'TINAL BYGG AB',
     'hero.subtitle': 'A partner you can trust',
     'hero.scroll': 'Scroll',
-    
+
     // Hero Features
     'hero.features.title': 'If you are looking for:',
     'hero.features.1': 'High value from knowledgeable specialists',
@@ -34,7 +34,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.features.5': 'Guarantee of first-class results within agreed time',
     'hero.features.6': 'Pleasant treatment by staff',
     'hero.features.conclusion': 'Then we are the right choice for you.',
-    
+
     // Services
     'services.title': 'Our Services',
     'services.subtitle': 'Professional construction and renovation services',
@@ -70,7 +70,7 @@ const translations: Record<Language, Record<string, string>> = {
     'services.scaffolding.meter': 'meter',
     'services.scaffolding.plan': 'plan',
     'services.scaffolding.tower': 'tower',
-    
+
     // About
     'about.title': 'TINAL BYGG - Your Partner in Construction',
     'about.intro': 'We are a committed and well-established construction company from Skåne that started operations in 2016. Our company does everything from smaller ROT projects for private individuals to larger construction projects for companies and property owners.',
@@ -81,11 +81,11 @@ const translations: Record<Language, Record<string, string>> = {
     'about.reliability.text': 'We understand that construction projects are significant investments. That\'s why we prioritize clear communication, punctuality, and professionalism in every aspect of our work.',
     'about.quality.title': 'Quality Standards',
     'about.quality.text': 'We are certified and insured, adhering to all Swedish construction standards and regulations. Our work is backed by comprehensive warranties.',
-    
+
     // Gallery
     'gallery.title': 'Our Work',
     'gallery.subtitle': 'A showcase of our completed projects demonstrating quality craftsmanship',
-    
+
     // Why Choose Us
     'why.title': 'Why Choose Us',
     'why.subtitle': 'What sets TINAL BYGG AB apart in the construction industry',
@@ -97,7 +97,7 @@ const translations: Record<Language, Record<string, string>> = {
     'why.skilled.text': 'Our team consists of experienced professionals with years of expertise in construction and renovation.',
     'why.satisfaction.title': 'Customer Satisfaction',
     'why.satisfaction.text': 'Your satisfaction is our priority. We work closely with you to ensure the final result exceeds expectations.',
-    
+
     // Contact
     'contact.title': 'Contact Us',
     'contact.subtitle': 'Get in touch to discuss your next project',
@@ -116,7 +116,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.form.message': 'Message',
     'contact.form.submit': 'Send Message',
     'contact.form.required': '*',
-    
+
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. All rights reserved.',
     'footer.org': 'Org. nr: 556XXX-XXXX | ROT & RUT registered'
@@ -129,12 +129,12 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.gallery': 'Galleri',
     'nav.contact': 'Kontakt',
     'nav.cta': 'Fyll i ansökningsformulär',
-    
+
     // Hero
     'hero.title': 'TINAL BYGG AB',
     'hero.subtitle': 'En partner du kan lita på',
     'hero.scroll': 'Scrolla',
-    
+
     // Hero Features
     'hero.features.title': 'Om du letar efter:',
     'hero.features.1': 'Högt värde på kunniga specialister',
@@ -144,7 +144,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.features.5': 'Garanti för förstklassigt resultat inom avtalad tid',
     'hero.features.6': 'Trevligt bemötande av personal',
     'hero.features.conclusion': 'Så är vi rätt val för dig.',
-    
+
     // Services
     'services.title': 'Våra Tjänster',
     'services.subtitle': 'Professionella bygg- och renoveringstjänster',
@@ -180,7 +180,7 @@ const translations: Record<Language, Record<string, string>> = {
     'services.scaffolding.meter': 'meter',
     'services.scaffolding.plan': 'plan',
     'services.scaffolding.tower': 'torn',
-    
+
     // About
     'about.title': 'TINAL BYGG - Din Partner i Byggande',
     'about.intro': 'Vi är ett engagerat och väletablerat byggföretag från Skåne som startade sin verksamhet 2016. Vårt företag gör allt från mindre ROT-projekt hos privatpersoner till större byggprojekt åt företag och fastighetsägare.',
@@ -191,11 +191,11 @@ const translations: Record<Language, Record<string, string>> = {
     'about.reliability.text': 'Vi förstår att byggprojekt är betydande investeringar. Därför prioriterar vi tydlig kommunikation, punktlighet och professionalism i alla aspekter av vårt arbete.',
     'about.quality.title': 'Kvalitetsstandarder',
     'about.quality.text': 'Vi är certifierade och försäkrade, följer alla svenska byggstandarder och regleringar. Vårt arbete backas upp av omfattande garantier.',
-    
+
     // Gallery
     'gallery.title': 'Vårt Arbete',
     'gallery.subtitle': 'En showcase av våra färdiga projekt som demonstrerar kvalitetshantverkskunnande',
-    
+
     // Why Choose Us
     'why.title': 'Varför Välja Oss',
     'why.subtitle': 'Vad som skiljer TINAL BYGG AB åt i byggindustrin',
@@ -207,7 +207,7 @@ const translations: Record<Language, Record<string, string>> = {
     'why.skilled.text': 'Vårt team består av erfarna proffs med många års expertis inom bygg och renovering.',
     'why.satisfaction.title': 'Kundnöjdhet',
     'why.satisfaction.text': 'Din tillfredsställelse är vår prioritet. Vi arbetar nära dig för att säkerställa att slutresultatet överträffar förväntningarna.',
-    
+
     // Contact
     'contact.title': 'Kontakta Oss',
     'contact.subtitle': 'Hör av dig för att diskutera ditt nästa projekt',
@@ -226,7 +226,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.form.message': 'Meddelande',
     'contact.form.submit': 'Skicka Meddelande',
     'contact.form.required': '*',
-    
+
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. Alla rättigheter reserverade.',
     'footer.org': 'Org. nr: 556XXX-XXXX | ROT & RUT registrerat'
@@ -239,12 +239,12 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.gallery': 'Galerija',
     'nav.contact': 'Kontakti',
     'nav.cta': 'Aizpildīt pieteikuma veidlapu',
-    
+
     // Hero
     'hero.title': 'TINAL BYGG AB',
     'hero.subtitle': 'Partneris, uz kuru varat paļauties',
     'hero.scroll': 'Ritināt',
-    
+
     // Hero Features
     'hero.features.title': 'Ja jūs meklējat:',
     'hero.features.1': 'Augstu vērtību no zinošiem speciālistiem',
@@ -254,7 +254,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.features.5': 'Garantiju par augstākās klases rezultātiem saskaņotajā laikā',
     'hero.features.6': 'Patīkamu personāla attieksmi',
     'hero.features.conclusion': 'Tad mēs esam pareizā izvēle jums.',
-    
+
     // Services
     'services.title': 'Mūsu Pakalpojumi',
     'services.subtitle': 'Profesionāli būvniecības un renovācijas pakalpojumi',
@@ -290,7 +290,7 @@ const translations: Record<Language, Record<string, string>> = {
     'services.scaffolding.meter': 'metrs',
     'services.scaffolding.plan': 'plāns',
     'services.scaffolding.tower': 'tornis',
-    
+
     // About
     'about.title': 'TINAL BYGG - Jūsu Partneris Būvniecībā',
     'about.intro': 'Mēs esam apņēmīgs un labi izveidots būvniecības uzņēmums no Skānes, kas uzsāka darbību 2016. gadā. Mūsu uzņēmums dara visu, sākot no mazākiem ROT projektiem privātpersonām līdz lielākiem būvniecības projektiem uzņēmumiem un īpašuma īpašniekiem.',
@@ -301,11 +301,11 @@ const translations: Record<Language, Record<string, string>> = {
     'about.reliability.text': 'Mēs saprotam, ka būvniecības projekti ir ievērojami ieguldījumi. Tāpēc mēs prioritizējam skaidru komunikāciju, punktualitāti un profesionalitāti visos mūsu darba aspektos.',
     'about.quality.title': 'Kvalitātes Standarti',
     'about.quality.text': 'Mēs esam sertificēti un apdrošināti, ievērojot visus Zviedrijas būvniecības standartus un noteikumus. Mūsu darbu atbalsta visaptverošas garantijas.',
-    
+
     // Gallery
     'gallery.title': 'Mūsu Darbs',
     'gallery.subtitle': 'Mūsu pabeigto projektu demonstrācija, kas demonstrē kvalitātes amata prasmi',
-    
+
     // Why Choose Us
     'why.title': 'Kāpēc Izvēlēties Mūs',
     'why.subtitle': 'Kas atšķir TINAL BYGG AB būvniecības industrijā',
@@ -317,7 +317,7 @@ const translations: Record<Language, Record<string, string>> = {
     'why.skilled.text': 'Mūsu komanda sastāv no pieredzējušiem profesionāļiem ar daudzgadu ekspertīzi būvniecībā un renovācijā.',
     'why.satisfaction.title': 'Klientu Apmierinātība',
     'why.satisfaction.text': 'Jūsu apmierinātība ir mūsu prioritāte. Mēs cieši strādājam ar jums, lai nodrošinātu, ka galīgais rezultāts pārsniedz cerības.',
-    
+
     // Contact
     'contact.title': 'Sazinieties ar Mums',
     'contact.subtitle': 'Sazinieties, lai apspriestu savu nākamo projektu',
@@ -336,7 +336,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.form.message': 'Ziņa',
     'contact.form.submit': 'Sūtīt Ziņu',
     'contact.form.required': '*',
-    
+
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. Visas tiesības aizsargātas.',
     'footer.org': 'Org. nr: 556XXX-XXXX | ROT & RUT reģistrēts'

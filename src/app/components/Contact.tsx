@@ -74,9 +74,9 @@ export function Contact() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 
+          <h2
             className="text-5xl md:text-6xl mb-4"
-            style={{ 
+            style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,
               color: '#1a1a1a'
@@ -84,7 +84,7 @@ export function Contact() {
           >
             {t('contact.title')}
           </h2>
-          <p 
+          <p
             className="text-gray-600 text-lg max-w-2xl mx-auto"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
@@ -94,9 +94,9 @@ export function Contact() {
 
         {/* Team Members */}
         <div className="mb-20">
-          <h3 
+          <h3
             className="text-4xl mb-12 text-center"
-            style={{ 
+            style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,
               color: '#1a1a1a'
@@ -104,7 +104,7 @@ export function Contact() {
           >
             {language === 'en' ? 'Our Team' : language === 'sv' ? 'Vårt Team' : 'Mūsu Komanda'}
           </h3>
-          
+
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {teamMembers.map((member, index) => (
               <div key={index} className="bg-gray-50 p-8">
@@ -117,9 +117,9 @@ export function Contact() {
                     />
                   </div>
                   <div>
-                    <h4 
+                    <h4
                       className="text-2xl mb-2"
-                      style={{ 
+                      style={{
                         fontFamily: 'Oswald, sans-serif',
                         fontWeight: 600,
                         color: '#1a1a1a'
@@ -135,7 +135,7 @@ export function Contact() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-3" style={{ fontFamily: 'Inter, sans-serif' }}>
                   <p className="text-sm text-gray-700 font-medium">
                     {member.responsibilities[language]}
@@ -155,9 +155,9 @@ export function Contact() {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Information */}
           <div>
-            <h3 
+            <h3
               className="text-3xl mb-8"
-              style={{ 
+              style={{
                 fontFamily: 'Oswald, sans-serif',
                 fontWeight: 600,
                 color: '#1a1a1a'
@@ -182,9 +182,9 @@ export function Contact() {
 
           {/* Contact Form */}
           <div>
-            <h3 
+            <h3
               className="text-3xl mb-8"
-              style={{ 
+              style={{
                 fontFamily: 'Oswald, sans-serif',
                 fontWeight: 600,
                 color: '#1a1a1a'

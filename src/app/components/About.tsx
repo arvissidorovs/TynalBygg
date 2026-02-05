@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 export function About() {
   const { t } = useLanguage();
-  
+
   return (
     <section id="about" className="bg-gray-50 py-24 px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
@@ -21,9 +21,9 @@ export function About() {
 
           {/* Text Side */}
           <div className="order-1 lg:order-2">
-            <h2 
+            <h2
               className="text-5xl md:text-6xl mb-8"
-              style={{ 
+              style={{
                 fontFamily: 'Oswald, sans-serif',
                 fontWeight: 600,
                 color: '#1a1a1a'
@@ -31,20 +31,20 @@ export function About() {
             >
               {t('about.title')}
             </h2>
-            
+
             <div className="space-y-6" style={{ fontFamily: 'Inter, sans-serif' }}>
               <p className="text-gray-700 text-lg leading-relaxed">
                 {t('about.intro')}
               </p>
-              
+
               <p className="text-gray-700 text-lg leading-relaxed">
                 {t('about.work')}
               </p>
-              
+
               <div className="pt-4">
-                <h3 
+                <h3
                   className="text-2xl mb-4"
-                  style={{ 
+                  style={{
                     fontFamily: 'Oswald, sans-serif',
                     fontWeight: 600,
                     color: '#1a1a1a'
@@ -58,9 +58,9 @@ export function About() {
               </div>
 
               <div className="pt-4">
-                <h3 
+                <h3
                   className="text-2xl mb-4"
-                  style={{ 
+                  style={{
                     fontFamily: 'Oswald, sans-serif',
                     fontWeight: 600,
                     color: '#1a1a1a'
@@ -74,9 +74,9 @@ export function About() {
               </div>
 
               <div className="pt-4">
-                <h3 
+                <h3
                   className="text-2xl mb-4"
-                  style={{ 
+                  style={{
                     fontFamily: 'Oswald, sans-serif',
                     fontWeight: 600,
                     color: '#1a1a1a'

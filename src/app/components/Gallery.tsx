@@ -36,15 +36,15 @@ const galleryImages = [
 
 export function Gallery() {
   const { t } = useLanguage();
-  
+
   return (
     <section id="gallery" className="bg-white py-24 px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 
+          <h2
             className="text-5xl md:text-6xl mb-4"
-            style={{ 
+            style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,
               color: '#1a1a1a'
@@ -52,7 +52,7 @@ export function Gallery() {
           >
             {t('gallery.title')}
           </h2>
-          <p 
+          <p
             className="text-gray-600 text-lg max-w-2xl mx-auto"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
@@ -63,7 +63,7 @@ export function Gallery() {
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
           {galleryImages.map((image, index) => (
-            <div 
+            <div
               key={index}
               className={`${image.span} overflow-hidden group cursor-pointer`}
             >
