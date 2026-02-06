@@ -12,10 +12,12 @@ import masonry from '../../assets/14.webp';
 import masonryFallback from '../../assets/fallback/14.png';
 import pool from '../../assets/14.webp';
 import poolFallback from '../../assets/fallback/14.png';
-import houseRenovation from '../../assets/10.webp';
-import houseRenovationFallback from '../../assets/fallback/10.png';
+import houseRenovation from '../../assets/17.webp';
+import houseRenovationFallback from '../../assets/fallback/17.png';
 import sheetMetalWork from '../../assets/12.webp';
 import sheetMetalWorkFallback from '../../assets/fallback/12.png';
+import concreteWork from '../../assets/18.webp';
+import concreteWorkFallback from '../../assets/fallback/18.png';
 import { ChevronDown } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
@@ -73,7 +75,8 @@ const services = [
   {
     titleKey: 'services.concrete',
     descKey: 'services.concrete.desc',
-    image: 'https://images.unsplash.com/photo-1655373617557-7138d45582d4-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb29mJTIwY29uc3RydWN0aW9uJTIwdGlsZXMlMjBub3JkaWN8ZW58MXx8fHwxNzcwMjgxNjIzfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: concreteWork,
+    fallback: concreteWorkFallback
   },
   {
     titleKey: 'services.metal',
@@ -148,11 +151,10 @@ function CustomSelect({
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`w-full border px-4 py-3 text-sm text-left transition-all rounded-md flex items-center justify-between active:scale-[0.99] cursor-pointer hover:bg-gray-50 ${
-          open
-            ? 'border-gray-900 shadow-sm'
-            : 'border-gray-300 hover:border-gray-400'
-        } focus:outline-none focus:ring-2 focus:ring-gray-900/20 bg-white`}
+        className={`w-full border px-4 py-3 text-sm text-left transition-all rounded-md flex items-center justify-between active:scale-[0.99] cursor-pointer hover:bg-gray-50 ${open
+          ? 'border-gray-900 shadow-sm'
+          : 'border-gray-300 hover:border-gray-400'
+          } focus:outline-none focus:ring-2 focus:ring-gray-900/20 bg-white`}
       >
         <span>{selectedLabel}</span>
         <ChevronDown
@@ -174,11 +176,10 @@ function CustomSelect({
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`w-full px-4 py-2 text-sm text-left transition-colors ${
-                option.value === value
-                  ? 'bg-gray-100 text-gray-900 font-semibold'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
+              className={`w-full px-4 py-2 text-sm text-left transition-colors ${option.value === value
+                ? 'bg-gray-100 text-gray-900 font-semibold'
+                : 'text-gray-700 hover:bg-gray-50'
+                }`}
             >
               {option.label}
             </button>
@@ -265,13 +266,13 @@ export function Services() {
 
   const specItems = selectedOption
     ? [
-        { label: t('services.scaffolding.length'), value: `${selectedOption.length} ${t('services.scaffolding.meter')}` },
-        { label: t('services.scaffolding.maxwork'), value: `${selectedOption.maxWork} ${t('services.scaffolding.meter')}` },
-        { label: t('services.scaffolding.maxstand'), value: `${selectedOption.maxStand} ${t('services.scaffolding.meter')}` },
-        { label: t('services.scaffolding.depth'), value: `${selectedOption.depth} ${t('services.scaffolding.meter')}` },
-        { label: t('services.scaffolding.floors'), value: `${selectedOption.floors} ${t('services.scaffolding.plan')}` },
-        { label: t('services.scaffolding.weight'), value: `ca ${selectedOption.weight}kg` }
-      ]
+      { label: t('services.scaffolding.length'), value: `${selectedOption.length} ${t('services.scaffolding.meter')}` },
+      { label: t('services.scaffolding.maxwork'), value: `${selectedOption.maxWork} ${t('services.scaffolding.meter')}` },
+      { label: t('services.scaffolding.maxstand'), value: `${selectedOption.maxStand} ${t('services.scaffolding.meter')}` },
+      { label: t('services.scaffolding.depth'), value: `${selectedOption.depth} ${t('services.scaffolding.meter')}` },
+      { label: t('services.scaffolding.floors'), value: `${selectedOption.floors} ${t('services.scaffolding.plan')}` },
+      { label: t('services.scaffolding.weight'), value: `ca ${selectedOption.weight}kg` }
+    ]
     : [];
 
   return (
@@ -361,7 +362,7 @@ export function Services() {
               <div className="space-y-6">
                 <CustomSelect
                   id="scaffolding-height"
-                  label={t('services.scaffolding.maxstand')}
+                  label={t('services.scaffolding.height')}
                   value={selectedHeight}
                   options={heightOptions}
                   onChange={setSelectedHeight}

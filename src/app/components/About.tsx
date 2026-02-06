@@ -1,4 +1,4 @@
-import placeholder from '../../assets/16.webp';
+import placeholder from '../../assets/11.webp';
 import placeholderFallback from '../../assets/fallback/16.png';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
