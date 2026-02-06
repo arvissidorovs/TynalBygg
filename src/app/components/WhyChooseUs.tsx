@@ -58,8 +58,8 @@ export function WhyChooseUs() {
                 key={index}
                 className="text-center"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-white/10 rounded-full">
-                  <Icon className="w-8 h-8" strokeWidth={1.5} />
+                <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full" style={{ backgroundColor: '#384A9C' }}>
+                  <Icon className="w-8 h-8" strokeWidth={1.5} style={{ color: '#D7DEFF' }} />
                 </div>
                 <h3
                   className="text-xl mb-3"

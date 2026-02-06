@@ -1,3 +1,22 @@
+import paintingImage from '../../assets/10.webp';
+import paintingImageFallback from '../../assets/fallback/10.png';
+import electricalWork from '../../assets/16.webp';
+import electricalWorkFallback from '../../assets/fallback/16.png';
+import tileSetting from '../../assets/5.webp';
+import tileSettingFallback from '../../assets/fallback/5.png';
+import roofTiling from '../../assets/13.webp';
+import roofTilingFallback from '../../assets/fallback/13.png';
+import windows from '../../assets/8.webp';
+import windowsFallback from '../../assets/fallback/8.png';
+import masonry from '../../assets/14.webp';
+import masonryFallback from '../../assets/fallback/14.png';
+import pool from '../../assets/14.webp';
+import poolFallback from '../../assets/fallback/14.png';
+import houseRenovation from '../../assets/10.webp';
+import houseRenovationFallback from '../../assets/fallback/10.png';
+import sheetMetalWork from '../../assets/12.webp';
+import sheetMetalWorkFallback from '../../assets/fallback/12.png';
+import { ChevronDown } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
 import { useMemo, useState, useEffect, useRef } from 'react';
@@ -6,42 +25,50 @@ const services = [
   {
     titleKey: 'services.painter',
     descKey: 'services.painter.desc',
-    image: 'https://images.unsplash.com/photo-1655373617557-7138d45582d4-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb29mJTIwY29uc3RydWN0aW9uJTIwdGlsZXMlMjBub3JkaWN8ZW58MXx8fHwxNzcwMjgxNjIzfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: paintingImage,
+    fallback: paintingImageFallback
   },
   {
     titleKey: 'services.electrician',
     descKey: 'services.electrician.desc',
-    image: 'https://images.unsplash.com/photo-1758862502366-92fd33c49ab7-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYWNhZGUlMjByZW5vdmF0aW9uJTIwbW9kZXJuJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzcwMjgxNjIzfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: electricalWork,
+    fallback: electricalWorkFallback
   },
   {
     titleKey: 'services.tile',
     descKey: 'services.tile.desc',
-    image: 'https://images.unsplash.com/photo-1769154075736-388b14877f12-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBiYXRocm9vbSUyMGludGVyaW9yJTIwc2NhbmRpbmF2aWFufGVufDF8fHx8MTc3MDI4MTYyM3ww&ixlib=rb-4.1.0&q=80&w=1080'
+    image: tileSetting,
+    fallback: tileSettingFallback
   },
   {
     titleKey: 'services.roof',
     descKey: 'services.roof.desc',
-    image: 'https://images.unsplash.com/photo-1759978257038-ff90be507a3d-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBpbnRlcmlvciUyMGxpdmluZyUyMHJvb20lMjBub3JkaWN8ZW58MXx8fHwxNzcwMjgxNjI0fDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: roofTiling,
+    fallback: roofTilingFallback
   },
   {
     titleKey: 'services.windows',
     descKey: 'services.windows.desc',
-    image: 'https://images.unsplash.com/photo-1655373617557-7138d45582d4-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb29mJTIwY29uc3RydWN0aW9uJTIwdGlsZXMlMjBub3JkaWN8ZW58MXx8fHwxNzcwMjgxNjIzfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: windows,
+    fallback: windowsFallback
   },
   {
     titleKey: 'services.masonry',
     descKey: 'services.masonry.desc',
-    image: 'https://images.unsplash.com/photo-1758862502366-92fd33c49ab7-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYWNhZGUlMjByZW5vdmF0aW9uJTIwbW9kZXJuJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzcwMjgxNjIzfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: masonry,
+    fallback: masonryFallback
   },
   {
     titleKey: 'services.pool',
     descKey: 'services.pool.desc',
-    image: 'https://images.unsplash.com/photo-1769154075736-388b14877f12-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBiYXRocm9vbSUyMGludGVyaW9yJTIwc2NhbmRpbmF2aWFufGVufDF8fHx8MTc3MDI4MTYyM3ww&ixlib=rb-4.1.0&q=80&w=1080'
+    image: pool,
+    fallback: poolFallback
   },
   {
     titleKey: 'services.renovation',
     descKey: 'services.renovation.desc',
-    image: 'https://images.unsplash.com/photo-1759978257038-ff90be507a3d-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBpbnRlcmlvciUyMGxpdmluZyUyMHJvb20lMjBub3JkaWN8ZW58MXx8fHwxNzcwMjgxNjI0fDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: houseRenovation,
+    fallback: houseRenovationFallback
   },
   {
     titleKey: 'services.concrete',
@@ -51,7 +78,8 @@ const services = [
   {
     titleKey: 'services.metal',
     descKey: 'services.metal.desc',
-    image: 'https://images.unsplash.com/photo-1758862502366-92fd33c49ab7-crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYWNhZGUlMjByZW5vdmF0aW9uJTIwbW9kZXJuJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzcwMjgxNjIzfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    image: sheetMetalWork,
+    fallback: sheetMetalWorkFallback
   }
 ];
 
@@ -118,25 +146,39 @@ function CustomSelect({
         id={id}
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-left focus:outline-none focus:border-gray-900 transition-colors rounded-sm flex items-center justify-between"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`w-full border px-4 py-3 text-sm text-left transition-all rounded-md flex items-center justify-between active:scale-[0.99] cursor-pointer hover:bg-gray-50 ${
+          open
+            ? 'border-gray-900 shadow-sm'
+            : 'border-gray-300 hover:border-gray-400'
+        } focus:outline-none focus:ring-2 focus:ring-gray-900/20 bg-white`}
       >
         <span>{selectedLabel}</span>
-        <span className="text-gray-500">▾</span>
+        <ChevronDown
+          className={`h-4 w-4 text-gray-500 transition-transform ${open ? 'rotate-180' : ''}`}
+        />
       </button>
       {open && (
-        <div className="absolute z-20 mt-2 w-full bg-white border border-gray-200 shadow-lg rounded-md overflow-hidden">
+        <div
+          role="listbox"
+          className="absolute z-20 mt-2 w-full bg-white border border-gray-200 shadow-lg rounded-md max-h-64 overflow-auto"
+        >
           {options.map((option) => (
             <button
               key={option.value}
               type="button"
+              role="option"
+              aria-selected={option.value === value}
               onClick={() => {
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`w-full px-4 py-2 text-sm text-left transition-colors ${option.value === value
+              className={`w-full px-4 py-2 text-sm text-left transition-colors ${
+                option.value === value
                   ? 'bg-gray-100 text-gray-900 font-semibold'
                   : 'text-gray-700 hover:bg-gray-50'
-                }`}
+              }`}
             >
               {option.label}
             </button>
@@ -221,6 +263,17 @@ export function Services() {
     [selectableOptions, selectedHeight, selectedLength]
   );
 
+  const specItems = selectedOption
+    ? [
+        { label: t('services.scaffolding.length'), value: `${selectedOption.length} ${t('services.scaffolding.meter')}` },
+        { label: t('services.scaffolding.maxwork'), value: `${selectedOption.maxWork} ${t('services.scaffolding.meter')}` },
+        { label: t('services.scaffolding.maxstand'), value: `${selectedOption.maxStand} ${t('services.scaffolding.meter')}` },
+        { label: t('services.scaffolding.depth'), value: `${selectedOption.depth} ${t('services.scaffolding.meter')}` },
+        { label: t('services.scaffolding.floors'), value: `${selectedOption.floors} ${t('services.scaffolding.plan')}` },
+        { label: t('services.scaffolding.weight'), value: `ca ${selectedOption.weight}kg` }
+      ]
+    : [];
+
   return (
     <section id="services" className="bg-white py-24 px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
@@ -249,13 +302,16 @@ export function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group cursor-pointer"
+              className="group"
             >
-              <div className="overflow-hidden mb-4 h-64 rounded-md">
+              <div className="overflow-hidden mb-4 h-64 rounded-lg">
                 <ImageWithFallback
                   src={service.image}
+                  fallbackSrc={service.fallback}
                   alt={t(service.titleKey)}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <h3
@@ -320,7 +376,7 @@ export function Services() {
                 />
               </div>
 
-              <div className="bg-gray-50 p-6 border border-gray-200 rounded-md">
+              <div className="bg-gray-50 p-6 border border-gray-200 rounded-lg">
                 {selectedOption ? (
                   <>
                     <h3
@@ -336,23 +392,22 @@ export function Services() {
                     <p className="text-center text-gray-900 font-semibold mb-4">
                       {t('services.scaffolding.week')} {selectedOption.weekPrice} kr
                     </p>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li>- {t('services.scaffolding.length')}: {selectedOption.length} {t('services.scaffolding.meter')}</li>
-                      <li>- {t('services.scaffolding.maxwork')}: {selectedOption.maxWork} {t('services.scaffolding.meter')}</li>
-                      <li>- {t('services.scaffolding.maxstand')}: {selectedOption.maxStand} {t('services.scaffolding.meter')}</li>
-                      <li>- {t('services.scaffolding.depth')}: {selectedOption.depth} {t('services.scaffolding.meter')}</li>
-                      <li>- {t('services.scaffolding.floors')}: {selectedOption.floors} {t('services.scaffolding.plan')}</li>
-                      <li>- {t('services.scaffolding.weight')}: ca {selectedOption.weight}kg</li>
-                    </ul>
+                    <div className="grid gap-3 text-sm text-gray-700">
+                      {specItems.map((item) => (
+                        <div key={item.label} className="flex items-center justify-between border-b border-gray-200 pb-2">
+                          <span className="font-medium text-gray-800">{item.label}</span>
+                          <span>{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </>
                 ) : (
-                  <div className="text-center text-sm text-gray-600">
-                    No matching size.
-                  </div>
+                  <div className="text-center text-sm text-gray-600">No matching size.</div>
                 )}
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

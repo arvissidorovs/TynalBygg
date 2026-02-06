@@ -1,3 +1,5 @@
+import placeholder from '../../assets/16.webp';
+import placeholderFallback from '../../assets/fallback/16.png';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -12,9 +14,12 @@ export function About() {
           <div className="order-2 lg:order-1">
             <div className="h-[600px] overflow-hidden">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1765519313320-22b0865e9c32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBjcmFmdHNtYW4lMjBwcm9mZXNzaW9uYWwlMjB3b3JrfGVufDF8fHx8MTc3MDI4MTYyNHww&ixlib=rb-4.1.0&q=80&w=1080"
+                src={placeholder}
+                fallbackSrc={placeholderFallback}
                 alt="Professional craftsman at work"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -22,11 +27,11 @@ export function About() {
           {/* Text Side */}
           <div className="order-1 lg:order-2">
             <h2
-              className="text-5xl md:text-6xl mb-8"
+              className="text-5xl md:text-6xl mb-6"
               style={{
                 fontFamily: 'Oswald, sans-serif',
                 fontWeight: 600,
-                color: '#1a1a1a'
+                color: '#384A9C'
               }}
             >
               {t('about.title')}

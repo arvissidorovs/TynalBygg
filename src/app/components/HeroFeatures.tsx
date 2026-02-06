@@ -30,8 +30,8 @@ export function HeroFeatures() {
         <div className="space-y-6" style={{ fontFamily: 'Inter, sans-serif' }}>
           {features.map((feature, index) => (
             <div key={index} className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-900 flex items-center justify-center mt-1">
-                <Check className="w-4 h-4 text-white" strokeWidth={3} />
+              <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-1" style={{ backgroundColor: '#384A9C' }}>
+                <Check className="w-4 h-4" strokeWidth={3} style={{ color: '#D7DEFF' }} />
               </div>
               <p className="text-gray-700 text-lg leading-relaxed">
                 {t(feature)}

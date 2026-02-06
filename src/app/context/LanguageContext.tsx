@@ -18,7 +18,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.services': 'Services',
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
-    'nav.cta': 'Application form',
+    'nav.cta': 'Fill in application form',
 
     // Hero
     'hero.title': 'TINAL BYGG AB',
@@ -44,8 +44,8 @@ const translations: Record<Language, Record<string, string>> = {
     'services.electrician.desc': 'Complete electrical installations and repairs by certified electricians ensuring safety and compliance.',
     'services.tile': 'Tile Setting',
     'services.tile.desc': 'Expert tile installation for bathrooms, kitchens, and floors with precision and attention to detail.',
-    'services.roof': 'Tegeltak Konstruktion & Renovering',
-    'services.roof.desc': 'Expert tegeltakstjänster inklusive konstruktion och renovering med högkvalitativa material och professionellt hantverkskunnande.',
+    'services.roof': 'Tile Roof Construction & Renovation',
+    'services.roof.desc': 'Expert tile roof services, including construction and renovation with high-quality materials and professional craftsmanship.',
     'services.windows': 'Windows & Doors Installation',
     'services.windows.desc': 'Professional installation of windows and doors improving energy efficiency and aesthetics.',
     'services.masonry': 'Masonry',
@@ -154,21 +154,21 @@ const translations: Record<Language, Record<string, string>> = {
     'services.electrician.desc': 'Kompletta elektriska installationer och reparationer av certifierade elektriker som säkerställer säkerhet och efterlevnad.',
     'services.tile': 'Plattsättare',
     'services.tile.desc': 'Expert plattläggning för badrum, kök och golv med precision och uppmärksamhet på detaljer.',
-    'services.roof': 'Tegeltak Konstruktion & Renovering',
-    'services.roof.desc': 'Expert tegeltakstjänster inklusive konstruktion och renovering med högkvalitativa material och professionellt hantverkskunnande.',
+    'services.roof': 'Tegeltak – konstruktion & renovering',
+    'services.roof.desc': 'Experttjänster för tegeltak, inklusive konstruktion och renovering med högkvalitativa material och professionellt hantverk.',
     'services.windows': 'Installation av Fönster och Dörrar',
     'services.windows.desc': 'Professionell installation av fönster och dörrar som förbättrar energieffektivitet och estetik.',
     'services.masonry': 'Murverk',
     'services.masonry.desc': 'Expert murverksarbete inklusive väggar, fundament och strukturella reparationer.',
-    'services.pool': 'Skappande av Pooler',
+    'services.pool': 'Poolbyggnation',
     'services.pool.desc': 'Design och konstruktion av pooler med kompletta installationstjänster.',
     'services.renovation': 'Renovering av Hus',
     'services.renovation.desc': 'Kompletta husrenoveringstjänster från planering till färdigställande med totalentreprenad.',
     'services.concrete': 'Betongarbeten',
     'services.concrete.desc': 'Professionella betongarbeten för fundament, golv och strukturella element.',
-    'services.metal': 'Arbeta med Plåt',
+    'services.metal': 'Plåtarbeten',
     'services.metal.desc': 'Expert plåtbearbetning och installation för tak- och byggbehov.',
-    'services.scaffolding': 'Hyr Haki i Skåne',
+    'services.scaffolding': 'Ställningsuthyrning i Skåne',
     'services.scaffolding.subtitle': 'Professionella ställningsuthyrningstjänster',
     'services.scaffolding.week': 'vecka',
     'services.scaffolding.length': 'Längd',
@@ -194,7 +194,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Gallery
     'gallery.title': 'Vårt Arbete',
-    'gallery.subtitle': 'En showcase av våra färdiga projekt som demonstrerar kvalitetshantverkskunnande',
+    'gallery.subtitle': 'Ett urval av våra färdiga projekt som visar kvalitet och hantverk',
 
     // Why Choose Us
     'why.title': 'Varför Välja Oss',
@@ -238,7 +238,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.services': 'Pakalpojumi',
     'nav.gallery': 'Galerija',
     'nav.contact': 'Kontakti',
-    'nav.cta': 'Pieteikuma veidlapa',
+    'nav.cta': 'Aizpildīt pieteikuma veidlapu',
 
     // Hero
     'hero.title': 'TINAL BYGG AB',
@@ -264,8 +264,8 @@ const translations: Record<Language, Record<string, string>> = {
     'services.electrician.desc': 'Pilnīga elektroinstalācija un remonti no sertificētiem elektriķiem, nodrošinot drošību un atbilstību.',
     'services.tile': 'Flīžu Likšana',
     'services.tile.desc': 'Ekspertu flīžu uzstādīšana vannas istabām, virtuvēm un grīdām ar precizitāti un uzmanību detaļām.',
-    'services.roof': 'Tegeltak Konstruktion & Renovering',
-    'services.roof.desc': 'Expert tegeltakstjänster inklusive konstruktion och renovering med högkvalitativa material och professionellt hantverkskunnande.',
+    'services.roof': 'Dakstiņu jumta būvniecība un renovācija',
+    'services.roof.desc': 'Ekspertu dakstiņu jumta pakalpojumi, ieskaitot būvniecību un renovāciju ar augstas kvalitātes materiāliem un profesionālu amatniecību.',
     'services.windows': 'Logu un Durvju Uzstādīšana',
     'services.windows.desc': 'Profesionāla logu un durvju uzstādīšana, uzlabojot energoefektivitāti un estētiku.',
     'services.masonry': 'Mūrnieka Darbi',
@@ -278,16 +278,16 @@ const translations: Record<Language, Record<string, string>> = {
     'services.concrete.desc': 'Profesionāli betona darbi pamatiem, grīdām un strukturāliem elementiem.',
     'services.metal': 'Skārda Darbi',
     'services.metal.desc': 'Ekspertu skārda apstrāde un uzstādīšana jumta un būvniecības vajadzībām.',
-    'services.scaffolding': 'Sastatņu Noma Skān',
+    'services.scaffolding': 'Sastatņu Noma Skānē',
     'services.scaffolding.subtitle': 'Profesionāli sastatņu nomas pakalpojumi',
     'services.scaffolding.week': 'nedēļa',
     'services.scaffolding.length': 'Garums',
     'services.scaffolding.maxwork': 'Maksimālais darba augstums',
     'services.scaffolding.maxstand': 'Maksimālais stāves augstums',
-    'services.scaffolding.depth': 'Garums',
-    'services.scaffolding.floors': 'Stāvdienu skaits',
+    'services.scaffolding.depth': 'Dziļums',
+    'services.scaffolding.floors': 'Stāvi',
     'services.scaffolding.weight': 'Svars',
-    'services.scaffolding.meter': 'metrs',
+    'services.scaffolding.meter': 'metri',
     'services.scaffolding.plan': 'plāns',
     'services.scaffolding.tower': 'tornis',
 
@@ -304,7 +304,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Gallery
     'gallery.title': 'Mūsu Darbs',
-    'gallery.subtitle': 'Mūsu pabeigto projektu demonstrācija, kas demonstrē kvalitātes amata prasmi',
+    'gallery.subtitle': 'Mūsu pabeigto projektu izlase, kas parāda amatniecības kvalitāti',
 
     // Why Choose Us
     'why.title': 'Kāpēc Izvēlēties Mūs',

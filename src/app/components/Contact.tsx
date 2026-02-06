@@ -1,3 +1,7 @@
+import arturs_lacitis from '../../assets/arturs-lacitis.webp';
+import arturs_lacitis_fallback from '../../assets/fallback/arturs-lacitis.png';
+import elmars_trankalis from '../../assets/elmars-trankalis.webp';
+import elmars_trankalis_fallback from '../../assets/fallback/elmars-trankalis.png';
 import { Mail, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
@@ -22,7 +26,8 @@ const teamMembers = [
       sv: 'Hej! Jag är en lycklig pappa till tre barn, en kärleksfull make och ägare till två bedårande hundar. Som alla som har barn och hundar vet jag hur man hittar lösningar även där de verkar omöjliga. Du har väl redan märkt vilka möjligheter det finns nu för tiden att utveckla barns färdigheter och talanger? Med rätt tillvägagångssätt och förmågan att motivera andra har våra barn hittat sätt att bevisa sig själva för världen och njuta av det. Och kan du motivera ditt barn kan du också motivera dina kollegor.',
       lv: 'Sveiki! Es esmu laimīgs trīs bērnu tēvs, mīlošs vīrs un divu apburošu suņu saimnieks. Kā ikviens, kam ir bērni un suņi, es zinu, kā atrast risinājumus pat tur, kur tie šķiet neiespējami. Jūs jau esat pamanījis, kādas iespējas mūsdienās ir, lai attīstītu bērnu prasmes un talantus? Ar pareizu pieeju un spēju motivēt citus mūsu bērni ir atraduši veidus, kā pierādīt sevi pasaulei un par to priecāties. Un ja jūs varat motivēt savu bērnu, jūs varat arī motivēt savus kolēģus.'
     },
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400'
+    image: arturs_lacitis,
+    fallback: arturs_lacitis_fallback
   },
   {
     name: 'Elmars Trankalis',
@@ -42,7 +47,8 @@ const teamMembers = [
       sv: 'Hej! Jag har otroligt tur för det finns tre prinsessor i min familj - min fru och två bedårande döttrar. Dessa tjejer är allt för mig! Men vet du vad mer jag gillar? Bilar. Jag älskar att hitta bortglömda gamla bilar och sedan göra allt jag kan för att få dem tillbaka till sin ursprungliga charm. Uthållighet och envishet att avsluta det som påbörjats. Jag börjar min arbetsdag med dessa egenskaper. Och jag lär ut samma sak till mina kollegor – gå hela vägen och avsluta det du började med till 100%.',
       lv: 'Sveiki! Man ir neticami paveicies, jo manā ģimenē ir trīs princeses - mana sieva un divas apburošas meitas. Šīs meitenes man ir viss! Bet vai jūs zināt, kas man vēl patīk? Automašīnas. Es mīlu atrast aizmirstas vecas automašīnas un pēc tam darīt visu iespējamo, lai atjaunotu to sākotnējo šarmu. Neatlaidība un spītība pabeigt iesākto. Es sāku savu darba dienu ar šīm īpašībām. Un es mācu to pašu saviem kolēģiem - iet līdz galam un pabeigt iesākto līdz 100%.'
     },
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400'
+    image: elmars_trankalis,
+    fallback: elmars_trankalis_fallback
   }
 ];
 
@@ -79,7 +85,7 @@ export function Contact() {
             style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,
-              color: '#1a1a1a'
+              color: '#384A9C'
             }}
           >
             {t('contact.title')}
@@ -107,13 +113,16 @@ export function Contact() {
 
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-gray-50 p-8 rounded-md">
+              <div key={index} className="bg-gray-50 p-8 rounded-lg">
                 <div className="flex items-start gap-6 mb-6">
                   <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
                     <ImageWithFallback
                       src={member.image}
+                      fallbackSrc={member.fallback}
                       alt={member.name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div>
@@ -205,7 +214,7 @@ export function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors rounded-sm"
+                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors rounded-md"
                 />
               </div>
 
@@ -220,7 +229,7 @@ export function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors rounded-sm"
+                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors rounded-md"
                 />
               </div>
 
@@ -234,7 +243,7 @@ export function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors rounded-sm"
+                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors rounded-md"
                 />
               </div>
 
@@ -249,13 +258,13 @@ export function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors resize-none rounded-sm"
+                  className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors resize-none rounded-md"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white py-4 px-8 font-medium tracking-wide hover:bg-gray-800 transition-colors rounded-md"
+                className="w-full bg-gray-900 text-white py-4 px-8 font-medium tracking-wide rounded-md shadow-sm hover:bg-gray-800 hover:shadow-md active:scale-[0.99] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/30 cursor-pointer"
               >
                 {t('contact.form.submit')}
               </button>
