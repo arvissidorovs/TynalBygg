@@ -5,7 +5,6 @@ import { Mail, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { projectId, publicAnonKey } from "./../../../utils/supabase/info";
 
 const teamMembers = [
   {
@@ -86,12 +85,11 @@ export function Contact() {
 
     try {
       const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-a04047fa/contact`,
+        "/api/contact",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${publicAnonKey}`,
           },
           body: JSON.stringify(formData),
         }
