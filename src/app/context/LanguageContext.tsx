@@ -54,8 +54,6 @@ const translations: Record<Language, Record<string, string>> = {
     'services.pool.desc': 'Design and construction of swimming pools with complete installation services.',
     'services.renovation': 'House Renovation',
     'services.renovation.desc': 'Complete house renovation services from planning to completion with turnkey solutions.',
-    'services.concrete': 'Concrete Work',
-    'services.concrete.desc': 'Professional concrete work for foundations, floors, and structural elements.',
     'services.metal': 'Sheet Metal Work',
     'services.metal.desc': 'Expert sheet metal fabrication and installation for roofing and construction needs.',
     'services.scaffolding': 'Scaffolding Rental in Skåne',
@@ -121,7 +119,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. All rights reserved.',
-    'footer.org': 'Org. nr: 556XXX-XXXX | ROT & RUT registered'
+    'footer.org': 'Org. nr: 559072-1204'
   },
   sv: {
     // Navigation
@@ -166,8 +164,6 @@ const translations: Record<Language, Record<string, string>> = {
     'services.pool.desc': 'Design och konstruktion av pooler med kompletta installationstjänster.',
     'services.renovation': 'Renovering av Hus',
     'services.renovation.desc': 'Kompletta husrenoveringstjänster från planering till färdigställande med totalentreprenad.',
-    'services.concrete': 'Betongarbeten',
-    'services.concrete.desc': 'Professionella betongarbeten för fundament, golv och strukturella element.',
     'services.metal': 'Plåtarbeten',
     'services.metal.desc': 'Expert på tillverkning och montering av plåtdetaljer.',
     'services.scaffolding': 'Ställningsuthyrning i Skåne',
@@ -274,12 +270,10 @@ const translations: Record<Language, Record<string, string>> = {
     'services.windows.desc': 'Profesionāla logu un durvju uzstādīšana, uzlabojot energoefektivitāti un estētiku.',
     'services.masonry': 'Mūrnieka darbi',
     'services.masonry.desc': 'Ekspertu mūrnieka darbi, ieskaitot sienas, pamatus un strukturālos remontus.',
-    'services.pool': 'Baseinu būvniecība',
+    'services.pool': 'Baseinu izbūve',
     'services.pool.desc': 'Peldbaseinu projektēšana un būvniecība ar pilnīgiem uzstādīšanas pakalpojumiem.',
     'services.renovation': 'Mājas renovācija',
     'services.renovation.desc': 'Pilnīgi mājas renovācijas pakalpojumi no plānošanas līdz pabeigšanai ar atslēgas rokās risinājumiem.',
-    'services.concrete': 'Betona darbi',
-    'services.concrete.desc': 'Profesionāli betona darbi pamatiem, grīdām un strukturāliem elementiem.',
     'services.metal': 'Skārda darbi',
     'services.metal.desc': 'Ekspertu skārda apstrāde un uzstādīšana jumta un būvniecības vajadzībām.',
     'services.scaffolding': 'Sastatņu noma Skānē',

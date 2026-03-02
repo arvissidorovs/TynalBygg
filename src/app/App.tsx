@@ -8,7 +8,7 @@ import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Globe, FileText } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import logoImage from '../assets/tinal-bygg-white.svg';
-import heroImage from '../assets/2.webp';
+import heroImage from '../assets/25.webp';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 
 function AppContent() {

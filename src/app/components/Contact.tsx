@@ -5,6 +5,26 @@ import { Mail, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from './ui/dialog';
+
+const PHONE_MAX_DIGITS = 15; // E.164 max length (country code + national number)
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
 
 const teamMembers = [
   {
@@ -71,16 +91,94 @@ const teamMembers = [
 
 export function Contact() {
   const { t, language } = useLanguage();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+  const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
+  const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
+
+  const getText = (messages: { en: string; sv: string; lv: string }) =>
+    messages[language];
+
+  const validateForm = (data: ContactFormData): ContactFormErrors => {
+    const errors: ContactFormErrors = {};
+    const trimmedName = data.name.trim();
+    const trimmedEmail = data.email.trim();
+    const trimmedPhone = data.phone.trim();
+    const trimmedMessage = data.message.trim();
+
+    if (!trimmedName) {
+      errors.name = getText({
+        en: "Name is required.",
+        sv: "Namn kr\u00e4vs.",
+        lv: "V\u0101rds ir oblig\u0101ts.",
+      });
+    }
+
+    if (!trimmedEmail) {
+      errors.email = getText({
+        en: "Email is required.",
+        sv: "E-post kr\u00e4vs.",
+        lv: "E-pasts ir oblig\u0101ts.",
+      });
+    } else if (!EMAIL_REGEX.test(trimmedEmail)) {
+      errors.email = getText({
+        en: "Enter a valid email address.",
+        sv: "Ange en giltig e-postadress.",
+        lv: "Ievadiet der\u012bgu e-pasta adresi.",
+      });
+    }
+
+    if (trimmedPhone) {
+      if (!/^\d+$/.test(trimmedPhone)) {
+        errors.phone = getText({
+          en: "Phone number can only contain digits.",
+          sv: "Telefonnummer f\u00e5r bara inneh\u00e5lla siffror.",
+          lv: "T\u0101lru\u0146a numurs dr\u012bkst satur\u0113t tikai ciparus.",
+        });
+      } else if (trimmedPhone.length > PHONE_MAX_DIGITS) {
+        errors.phone = getText({
+          en: `Phone number can be at most ${PHONE_MAX_DIGITS} digits.`,
+          sv: `Telefonnummer f\u00e5r vara h\u00f6gst ${PHONE_MAX_DIGITS} siffror.`,
+          lv: `T\u0101lru\u0146a numurs var b\u016bt ne vair\u0101k k\u0101 ${PHONE_MAX_DIGITS} cipari.`,
+        });
+      }
+    }
+
+    if (!trimmedMessage) {
+      errors.message = getText({
+        en: "Message is required.",
+        sv: "Meddelande kr\u00e4vs.",
+        lv: "Zi\u0146ojums ir oblig\u0101ts.",
+      });
+    }
+
+    return errors;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError("");
+
+    const trimmedFormData: ContactFormData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      message: formData.message.trim(),
+    };
+    const errors = validateForm(trimmedFormData);
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setFormErrors({});
     setIsSubmitting(true);
 
     try {
@@ -91,7 +189,7 @@ export function Contact() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(trimmedFormData),
         }
       );
 
@@ -102,13 +200,7 @@ export function Contact() {
       const result = await response.json();
       console.log("Email sent successfully:", result);
 
-      alert(
-        language === "en"
-          ? "Thank you for your inquiry! We will contact you shortly."
-          : language === "sv"
-            ? "Tack för ditt meddelande! Vi kontaktar dig inom kort."
-            : "Paldies par jūsu ziņojumu! Mēs ar jums sazināsimies drīzumā."
-      );
+      setIsSuccessDialogOpen(true);
 
       setFormData({
         name: "",
@@ -118,12 +210,12 @@ export function Contact() {
       });
     } catch (error) {
       console.error("Error sending message:", error);
-      alert(
+      setSubmitError(
         language === "en"
           ? "Sorry, there was an error sending your message. Please try again or contact us directly."
           : language === "sv"
-            ? "Tyvärr uppstod ett fel när meddelandet skickades. Försök igen eller kontakta oss direkt."
-            : "Diemžēl radās kļūda, nosūtot jūsu ziņojumu. Lūdzu, mēģiniet vēlreiz vai sazinieties ar mums tieši."
+            ? "Tyv\u00e4rr uppstod ett fel n\u00e4r meddelandet skickades. F\u00f6rs\u00f6k igen eller kontakta oss direkt."
+            : "Diem\u017e\u0113l rad\u0101s k\u013c\u016bda, nos\u016btot j\u016bsu zi\u0146ojumu. L\u016bdzu, m\u0113\u0123iniet v\u0113lreiz vai sazinieties ar mums tie\u0161i."
       );
     } finally {
       setIsSubmitting(false);
@@ -135,10 +227,27 @@ export function Contact() {
       HTMLInputElement | HTMLTextAreaElement
     >,
   ) => {
+    const { name, value } = e.target;
+    const nextValue =
+      name === "phone"
+        ? value.replace(/\D/g, "").slice(0, PHONE_MAX_DIGITS)
+        : value;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: nextValue,
     });
+
+    if (formErrors[name as keyof ContactFormData]) {
+      setFormErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+
+    if (submitError) {
+      setSubmitError("");
+    }
   };
 
   return (
@@ -338,8 +447,14 @@ export function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 transition-colors"
+                  aria-invalid={Boolean(formErrors.name)}
+                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors ${
+                    formErrors.name ? "border-red-500" : "border-gray-300"
+                  }`}
                 />
+                {formErrors.name && (
+                  <p className="mt-2 text-sm text-red-600">{formErrors.name}</p>
+                )}
               </div>
 
               <div>
@@ -357,8 +472,15 @@ export function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 transition-colors"
+                  autoComplete="email"
+                  aria-invalid={Boolean(formErrors.email)}
+                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors ${
+                    formErrors.email ? "border-red-500" : "border-gray-300"
+                  }`}
                 />
+                {formErrors.email && (
+                  <p className="mt-2 text-sm text-red-600">{formErrors.email}</p>
+                )}
               </div>
 
               <div>
@@ -374,8 +496,25 @@ export function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 transition-colors"
+                  inputMode="numeric"
+                  autoComplete="tel"
+                  pattern="[0-9]*"
+                  maxLength={PHONE_MAX_DIGITS}
+                  aria-invalid={Boolean(formErrors.phone)}
+                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors ${
+                    formErrors.phone ? "border-red-500" : "border-gray-300"
+                  }`}
                 />
+                <p className="mt-2 text-xs text-gray-500">
+                  {language === "en"
+                    ? `Digits only, max ${PHONE_MAX_DIGITS} numbers.`
+                    : language === "sv"
+                      ? `Endast siffror, max ${PHONE_MAX_DIGITS} siffror.`
+                      : `Tikai cipari, maksimums ${PHONE_MAX_DIGITS} cipari.`}
+                </p>
+                {formErrors.phone && (
+                  <p className="mt-2 text-sm text-red-600">{formErrors.phone}</p>
+                )}
               </div>
 
               <div>
@@ -393,9 +532,21 @@ export function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 transition-colors resize-none"
+                  aria-invalid={Boolean(formErrors.message)}
+                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors resize-none ${
+                    formErrors.message ? "border-red-500" : "border-gray-300"
+                  }`}
                 />
+                {formErrors.message && (
+                  <p className="mt-2 text-sm text-red-600">{formErrors.message}</p>
+                )}
               </div>
+
+              {submitError && (
+                <p className="text-sm text-red-600" role="alert">
+                  {submitError}
+                </p>
+              )}
 
               <button
                 type="submit"
@@ -407,6 +558,43 @@ export function Contact() {
                   : t("contact.form.submit")}
               </button>
             </form>
+
+            <Dialog
+              open={isSuccessDialogOpen}
+              onOpenChange={setIsSuccessDialogOpen}
+            >
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>
+                    {language === "en"
+                      ? "Message sent"
+                      : language === "sv"
+                        ? "Meddelandet skickat"
+                        : "Zi\u0146ojums nos\u016bt\u012bts"}
+                  </DialogTitle>
+                  <DialogDescription>
+                    {language === "en"
+                      ? "Thank you for your inquiry! We will contact you shortly."
+                      : language === "sv"
+                        ? "Tack f\u00f6r ditt meddelande! Vi kontaktar dig inom kort."
+                        : "Paldies par j\u016bsu zi\u0146ojumu! M\u0113s ar jums sazin\u0101simies dr\u012bzum\u0101."}
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <button
+                    type="button"
+                    onClick={() => setIsSuccessDialogOpen(false)}
+                    className="bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-gray-800 transition-colors"
+                  >
+                    {language === "en"
+                      ? "Close"
+                      : language === "sv"
+                        ? "St\u00e4ng"
+                        : "Aizv\u0113rt"}
+                  </button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

@@ -55,11 +55,6 @@ const services = [
     image: houseRenovation
   },
   {
-    titleKey: 'services.concrete',
-    descKey: 'services.concrete.desc',
-    image: concreteWork
-  },
-  {
     titleKey: 'services.metal',
     descKey: 'services.metal.desc',
     image: sheetMetalWork
