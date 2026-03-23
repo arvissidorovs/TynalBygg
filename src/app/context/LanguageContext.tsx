@@ -80,6 +80,10 @@ const translations: Record<Language, Record<string, string>> = {
     'about.reliability.text': 'We understand that construction projects are significant investments. That\'s why we prioritize clear communication, punctuality, and professionalism in every aspect of our work.',
     'about.quality.title': 'Quality Standards',
     'about.quality.text': 'We are certified and insured, adhering to all Swedish construction standards and regulations. Our work is backed by comprehensive warranties.',
+    'about.badge.eyebrow': 'Authorized Wet Room',
+    'about.badge.text': 'Listed by BKR for wet room work according to BBV industry rules.',
+    'about.badge.link': 'View company at BKR',
+    'about.badge.alt': 'BKR Authorized Wet Room badge',
 
     // Gallery
     'gallery.title': 'Our Work',
@@ -119,7 +123,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. All rights reserved.',
-    'footer.org': 'Org. nr: 559072-1204'
+    'footer.org': 'Org. nr: 559072-1204 | ROT registered'
   },
   sv: {
     // Navigation
@@ -190,6 +194,10 @@ const translations: Record<Language, Record<string, string>> = {
     'about.reliability.text': 'Vi förstår att byggprojekt är betydande investeringar. Därför prioriterar vi tydlig kommunikation, punktlighet och professionalism i alla aspekter av vårt arbete.',
     'about.quality.title': 'Kvalitetsstandarder',
     'about.quality.text': 'Vi är certifierade och försäkrade, följer alla svenska byggstandarder och regleringar. Vårt arbete backas upp av omfattande garantier.',
+    'about.badge.eyebrow': 'Behörigt Våtrum',
+    'about.badge.text': 'Listade hos BKR för våtrumsarbeten enligt BBV:s branschregler.',
+    'about.badge.link': 'Se företag hos BKR',
+    'about.badge.alt': 'BKR Behörigt Våtrum-märke',
 
     // Gallery
     'gallery.title': 'Vårt Arbete',
@@ -229,7 +237,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. Alla rättigheter reserverade.',
-    'footer.org': 'Org. nr: 556XXX-XXXX | ROT & RUT registrerat'
+    'footer.org': 'Org. nr: 559072-1204 | ROT registrerat'
   },
   lv: {
     // Navigation
@@ -300,6 +308,10 @@ const translations: Record<Language, Record<string, string>> = {
     'about.reliability.text': 'Mēs saprotam, ka būvniecības projekti ir ievērojami ieguldījumi. Tāpēc mēs prioritizējam skaidru komunikāciju, punktualitāti un profesionalitāti visos mūsu darba aspektos.',
     'about.quality.title': 'Kvalitātes standarti',
     'about.quality.text': 'Mēs esam sertificēti un apdrošināti, ievērojot visus Zviedrijas būvniecības standartus un noteikumus. Mūsu darbu atbalsta visaptverošas garantijas.',
+    'about.badge.eyebrow': 'Sertificēta mitrā telpa',
+    'about.badge.text': 'Uzņēmums ir atrodams BKR sarakstā mitro telpu darbiem saskaņā ar BBV noteikumiem.',
+    'about.badge.link': 'Skatīt uzņēmumu BKR',
+    'about.badge.alt': 'BKR sertificētas mitrās telpas emblēma',
 
     // Gallery
     'gallery.title': 'Mūsu Darbs',
@@ -339,7 +351,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     'footer.rights': '© 2026 TINAL BYGG AB. Visas tiesības aizsargātas.',
-    'footer.org': 'Org. nr: 556XXX-XXXX | ROT & RUT reģistrēts'
+    'footer.org': 'Org. nr: 559072-1204 | ROT & RUT reģistrēts'
   }
 };
 

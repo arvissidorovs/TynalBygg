@@ -1,0 +1,15 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" rx="16" fill="#F36F21"/>
+  <path d="M74 74H79V120H74V74Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <path d="M80 66H85V120H80V66Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <path d="M86 70H91V120H86V70Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <path d="M92 62H97V120H92V62Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <path d="M98 68H103V120H98V68Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <path d="M104 64H109V120H104V64Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <path d="M110 72H115V120H110V72Z" fill="#F5A36D" fill-opacity="0.45"/>
+  <text x="8" y="36" fill="white" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">behörig</text>
+  <text x="8" y="60" fill="white" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">våtrum</text>
+  <text x="8" y="102" fill="white" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600">bygg</text>
+  <text x="8" y="111" fill="white" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600">keramik</text>
+  <text x="8" y="120" fill="white" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600">rådet</text>
+</svg>

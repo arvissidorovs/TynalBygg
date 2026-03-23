@@ -7,6 +7,7 @@ import { HeroFeatures } from './components/HeroFeatures';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Globe, FileText } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import logoImage from '../assets/tinal-bygg-white.svg';
 import heroImage from '../assets/25.webp';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
@@ -232,6 +233,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <AppContent />
+      <Analytics />
     </LanguageProvider>
   );
 }

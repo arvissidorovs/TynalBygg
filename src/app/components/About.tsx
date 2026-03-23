@@ -1,6 +1,8 @@
 import placeholder from '../../assets/11.webp';
+import bkrBadge from '../../assets/bkr-behorig-vatrum.svg';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
+import { ArrowUpRight } from 'lucide-react';
 
 export function About() {
   const { t } = useLanguage();
@@ -90,6 +92,44 @@ export function About() {
                 <p className="text-gray-700 leading-relaxed">
                   {t('about.quality.text')}
                 </p>
+
+                <a
+                  href="https://www.bkr.se/hitta-foretag/skane/svalovs-kommun/tinal-bygg-ab/1303401"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t('about.badge.link')}
+                  className="mt-6 flex w-full max-w-md items-center gap-5 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  <img
+                    src={bkrBadge}
+                    alt={t('about.badge.alt')}
+                    className="h-24 w-24 shrink-0 rounded-2xl"
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <div className="min-w-0">
+                    <p
+                      className="text-xs font-semibold uppercase tracking-[0.24em] text-[#384A9C]"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {t('about.badge.eyebrow')}
+                    </p>
+                    <p
+                      className="mt-2 text-base font-medium leading-snug text-gray-900"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {t('about.badge.text')}
+                    </p>
+                    <span
+                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#384A9C]"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {t('about.badge.link')}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
