@@ -58,9 +58,8 @@ function AppContent() {
   };
 
   const languages = [
-    { code: 'en' as const, label: 'English' },
     { code: 'sv' as const, label: 'Svenska' },
-    { code: 'lv' as const, label: 'Latviešu' }
+    { code: 'en' as const, label: 'English' }
   ];
 
   return (

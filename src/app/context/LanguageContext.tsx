@@ -344,7 +344,7 @@ const translations: Record<Language, Record<string, string>> = {
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('sv');
 
   const t = (key: string): string => {
     return translations[language][key] || key;
@@ -365,7 +365,7 @@ export function useLanguage() {
     if (typeof window !== 'undefined' && import.meta.hot) {
       console.warn('useLanguage called before LanguageProvider initialized (likely during hot reload)');
       return {
-        language: 'en' as const,
+        language: 'sv' as const,
         setLanguage: () => { },
         t: (key: string) => key
       };
