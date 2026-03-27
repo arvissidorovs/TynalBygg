@@ -134,41 +134,28 @@ export function Gallery() {
   const { t } = useLanguage();
 
   return (
-    <section id="gallery" className="bg-gray-900 py-24 px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto">
+    <section id="gallery" className="site-section overflow-hidden bg-gray-900">
+      <div className="site-shell">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2
-            className="text-white"
-            style={{
-              fontFamily: 'Oswald, sans-serif',
-              fontWeight: 600,
-              fontSize: '34px',
-              lineHeight: '1.5'
-            }}
-          >
-            {t('gallery.title')}
-          </h2>
-          <p
-            className="text-gray-300 max-w-2xl mx-auto"
-            style={{ fontFamily: 'Inter, sans-serif', fontSize: '16px', lineHeight: '1.5' }}
-          >
-            {t('gallery.subtitle')}
-          </p>
+        <div className="section-header">
+          <h2 className="section-title-light">{t('gallery.title')}</h2>
+          <p className="section-copy-light">{t('gallery.subtitle')}</p>
+          <div className="section-divider-light" />
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div className="grid auto-rows-[260px] grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:auto-rows-[300px]">
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className={`${image.span} overflow-hidden group cursor-pointer rounded-lg`}
+              className={`${image.span} relative group cursor-pointer overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/[0.03] shadow-[0_18px_40px_rgba(0,0,0,0.18)]`}
             >
               <ImageWithFallback
                 src={image.url}
                 alt={image.alt}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
           ))}
         </div>

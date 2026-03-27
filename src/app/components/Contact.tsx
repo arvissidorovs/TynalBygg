@@ -253,43 +253,26 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="bg-white px-8 py-28 lg:px-16 lg:py-32"
+      className="site-section bg-[#f7f8fc]"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="site-shell">
         {/* Section Header */}
-        <div className="mb-16 text-center lg:mb-20">
-          <h2
-            style={{
-              fontFamily: "Oswald, sans-serif",
-              fontWeight: 600,
-              fontSize: "48px",
-              lineHeight: "1.5",
-            }}
-          >
-            {t("contact.title")}
-          </h2>
-          <p
-            className="text-gray-600 max-w-2xl mx-auto"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "16px",
-              lineHeight: "1.5",
-            }}
-          >
-            {t("contact.subtitle")}
-          </p>
+        <div className="section-header">
+          <h2 className="section-title-dark">{t("contact.title")}</h2>
+          <p className="section-copy-dark">{t("contact.subtitle")}</p>
+          <div className="section-divider" />
         </div>
 
         {/* Team Members */}
         <div className="mb-24 lg:mb-28">
           <h3
-            className="mb-6 text-center"
+            className="mb-8 text-center"
             style={{
               fontFamily: "Oswald, sans-serif",
               fontWeight: 600,
               color: "#384A9C",
-              fontSize: "28px",
-              lineHeight: "1.5",
+              fontSize: "30px",
+              lineHeight: "1.2",
             }}
           >
             {language === "en"
@@ -303,12 +286,11 @@ export function Contact() {
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="relative rounded-r-2xl rounded-l-sm border-l-4 border-[#384A9C] bg-[#F8FAFF] p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
-              //className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
+                className="soft-surface relative p-6 sm:p-7"
               >
-                {/* <div className="absolute left-0 top-0 h-full w-[3px] rounded-l-2xl bg-[#384A9C]/70" /> */}
+                <div className="absolute inset-y-6 left-0 w-[3px] rounded-r-full bg-[#384A9C]/75" />
                 <div className="mb-5 flex items-start gap-4">
-                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-gray-200">
+                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-gray-200 ring-offset-4 ring-offset-white">
                     <ImageWithFallback
                       src={member.image}
                       alt={member.name}
@@ -318,7 +300,7 @@ export function Contact() {
 
                   <div className="min-w-0 pt-1">
                     <h4
-                      className="mb-2 text-2xl leading-tight"
+                      className="mb-2 text-[28px] leading-tight"
                       style={{
                         fontFamily: "Oswald, sans-serif",
                         fontWeight: 600,
@@ -328,7 +310,7 @@ export function Contact() {
                       {member.name}
                     </h4>
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-gray-50 px-3 py-1.5 text-gray-700">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-2 text-gray-700 shadow-sm">
                       <Phone className="h-4 w-4 text-[#384A9C]" />
                       <span
                         className="leading-none"
@@ -344,7 +326,7 @@ export function Contact() {
                 </div>
 
                 <div
-                  className="space-y-3 border-t border-gray-100 pt-4"
+                  className="space-y-3 border-t border-gray-100 pt-5"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   <p className="text-sm font-medium leading-6 text-gray-800">
@@ -362,73 +344,83 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10">
           {/* Contact Information */}
-          <div>
+          <div className="px-1 py-2 sm:px-2">
             <h3
               className="mb-8"
               style={{
                 fontFamily: "Oswald, sans-serif",
                 fontWeight: 600,
                 color: "#1a1a1a",
-                fontSize: "22px",
-                lineHeight: "1.5",
+                fontSize: "30px",
+                lineHeight: "1.15",
               }}
             >
               {t("contact.getintouch")}
             </h3>
-
-            <div
-              className="space-y-6"
+            <p
+              className="mb-8 max-w-md text-[15px] leading-7 text-gray-600"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full flex-shrink-0">
-                  <Mail className="w-5 h-5 text-gray-700" />
-                </div>
-                <div>
-                  <h4
-                    className="font-semibold text-gray-900 mb-1"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    {t("contact.email")}
-                  </h4>
-                  <p
-                    className="text-gray-600"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    tinalbygg@outlook.com
-                  </p>
-                  <p
-                    className="text-gray-600"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    info@tinalbygg.se
-                  </p>
+              {t("contact.subtitle")}
+            </p>
+
+            <div
+              className="space-y-5"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              <div className="rounded-2xl border border-gray-200/80 bg-white/60 p-5">
+                <div className="flex items-start gap-4">
+                  <div className="icon-anchor h-12 w-12 flex-shrink-0">
+                    <Mail className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4
+                      className="mb-1 font-semibold text-gray-900"
+                      style={{
+                        fontSize: "16px",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      {t("contact.email")}
+                    </h4>
+                    <a
+                      href="mailto:tinalbygg@outlook.com"
+                      className="block text-gray-600 transition-colors hover:text-[#384A9C]"
+                      style={{
+                        fontSize: "16px",
+                        lineHeight: "1.8",
+                      }}
+                    >
+                      tinalbygg@outlook.com
+                    </a>
+                    <a
+                      href="mailto:info@tinalbygg.se"
+                      className="block text-gray-600 transition-colors hover:text-[#384A9C]"
+                      style={{
+                        fontSize: "16px",
+                        lineHeight: "1.8",
+                      }}
+                    >
+                      info@tinalbygg.se
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div className="px-1 py-2 sm:px-2">
             <h3
               className="mb-8"
               style={{
                 fontFamily: "Oswald, sans-serif",
                 fontWeight: 600,
                 color: "#1a1a1a",
-                fontSize: "22px",
-                lineHeight: "1.5",
+                fontSize: "30px",
+                lineHeight: "1.15",
               }}
             >
               {t("contact.form.title")}
@@ -439,59 +431,61 @@ export function Contact() {
               className="space-y-6"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  {t("contact.form.name")}{" "}
-                  {t("contact.form.required")}
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  aria-invalid={Boolean(formErrors.name)}
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors ${formErrors.name ? "border-red-500" : "border-gray-300"
-                    }`}
-                />
-                {formErrors.name && (
-                  <p className="mt-2 text-sm text-red-600">{formErrors.name}</p>
-                )}
-              </div>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-sm font-medium text-gray-700"
+                  >
+                    {t("contact.form.name")}{" "}
+                    {t("contact.form.required")}
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    aria-invalid={Boolean(formErrors.name)}
+                    className={`field-shell w-full ${formErrors.name ? "border-red-500 focus:border-red-500 focus:shadow-[0_0_0_4px_rgba(239,68,68,0.08)]" : ""
+                      }`}
+                  />
+                  {formErrors.name && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.name}</p>
+                  )}
+                </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  {t("contact.form.email")}{" "}
-                  {t("contact.form.required")}
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  autoComplete="email"
-                  aria-invalid={Boolean(formErrors.email)}
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors ${formErrors.email ? "border-red-500" : "border-gray-300"
-                    }`}
-                />
-                {formErrors.email && (
-                  <p className="mt-2 text-sm text-red-600">{formErrors.email}</p>
-                )}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium text-gray-700"
+                  >
+                    {t("contact.form.email")}{" "}
+                    {t("contact.form.required")}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    aria-invalid={Boolean(formErrors.email)}
+                    className={`field-shell w-full ${formErrors.email ? "border-red-500 focus:border-red-500 focus:shadow-[0_0_0_4px_rgba(239,68,68,0.08)]" : ""
+                      }`}
+                  />
+                  {formErrors.email && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.email}</p>
+                  )}
+                </div>
               </div>
 
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="mb-2 block text-sm font-medium text-gray-700"
                 >
                   {t("contact.form.phone")}
                 </label>
@@ -506,7 +500,7 @@ export function Contact() {
                   pattern="[0-9]*"
                   maxLength={PHONE_MAX_DIGITS}
                   aria-invalid={Boolean(formErrors.phone)}
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors ${formErrors.phone ? "border-red-500" : "border-gray-300"
+                  className={`field-shell w-full ${formErrors.phone ? "border-red-500 focus:border-red-500 focus:shadow-[0_0_0_4px_rgba(239,68,68,0.08)]" : ""
                     }`}
                 />
                 {formErrors.phone && (
@@ -517,7 +511,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="mb-2 block text-sm font-medium text-gray-700"
                 >
                   {t("contact.form.message")}{" "}
                   {t("contact.form.required")}
@@ -530,7 +524,7 @@ export function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   aria-invalid={Boolean(formErrors.message)}
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:border-gray-900 transition-colors resize-none ${formErrors.message ? "border-red-500" : "border-gray-300"
+                  className={`field-shell min-h-[160px] w-full resize-none ${formErrors.message ? "border-red-500 focus:border-red-500 focus:shadow-[0_0_0_4px_rgba(239,68,68,0.08)]" : ""
                     }`}
                 />
                 {formErrors.message && (
@@ -546,7 +540,7 @@ export function Contact() {
 
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white py-4 px-8 font-medium tracking-wide hover:bg-gray-800 transition-colors rounded-md"
+                className="cta-button w-full justify-center"
                 disabled={isSubmitting}
               >
                 {isSubmitting
@@ -580,7 +574,7 @@ export function Contact() {
                   <button
                     type="button"
                     onClick={() => setIsSuccessDialogOpen(false)}
-                    className="bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-gray-800 transition-colors"
+                    className="cta-button px-4 py-2.5 text-xs"
                   >
                     {language === "en"
                       ? "Close"

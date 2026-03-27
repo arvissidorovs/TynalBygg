@@ -152,7 +152,7 @@ function CustomSelect({
 
   return (
     <div ref={containerRef} className="relative">
-      <label htmlFor={id} className="block text-sm font-semibold text-white mb-2">
+      <label htmlFor={id} className="mb-2.5 block text-sm font-semibold text-white/88">
         {label}
       </label>
       <button
@@ -161,9 +161,9 @@ function CustomSelect({
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`w-full border px-4 py-3 text-sm text-left transition-all rounded-md flex items-center justify-between active:scale-[0.99] cursor-pointer hover:bg-gray-50 ${open
-          ? 'border-gray-900 shadow-sm'
-          : 'border-gray-300 hover:border-gray-400'
+        className={`flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3.5 text-left text-sm transition-all active:scale-[0.99] ${open
+          ? 'border-white/40 bg-white text-gray-950 shadow-[0_14px_30px_rgba(15,23,42,0.14)]'
+          : 'border-white/18 bg-white/92 text-gray-900 hover:border-white/32 hover:bg-white'
           } focus:outline-none focus:ring-2 focus:ring-gray-900/20 bg-white`}
       >
         <span>{selectedLabel}</span>
@@ -174,7 +174,7 @@ function CustomSelect({
       {open && (
         <div
           role="listbox"
-          className="absolute z-20 mt-2 w-full bg-white border border-gray-200 shadow-lg rounded-md max-h-64 overflow-auto"
+          className="absolute z-20 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-white/70 bg-white shadow-[0_22px_44px_rgba(15,23,42,0.12)]"
         >
           {options.map((option) => (
             <button
@@ -186,8 +186,8 @@ function CustomSelect({
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`w-full px-4 py-2 text-sm text-left transition-colors ${option.value === value
-                ? 'bg-gray-100 text-gray-900 font-semibold'
+              className={`w-full px-4 py-2.5 text-left text-sm transition-colors ${option.value === value
+                ? 'bg-[#F3F5FF] font-semibold text-gray-900'
                 : 'text-gray-700 hover:bg-gray-50'
                 }`}
             >
@@ -368,38 +368,25 @@ export function Services() {
 
   return (
     <>
-      <section id="services" className="bg-white px-8 py-28 lg:px-16 lg:py-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center lg:mb-20">
-            <h2
-              className="text-5xl md:text-6xl mb-4"
-              style={{
-                fontFamily: 'Oswald, sans-serif',
-                fontWeight: 600,
-                color: '#1a1a1a'
-              }}
-            >
-              {t('services.title')}
-            </h2>
-            <p
-              className="text-gray-600 text-lg max-w-2xl mx-auto"
-              style={{ fontFamily: 'Inter, sans-serif' }}
-            >
-              {t('services.subtitle')}
-            </p>
+      <section id="services" className="site-section bg-white">
+        <div className="site-shell">
+          <div className="section-header">
+            <h2 className="section-title-dark">{t('services.title')}</h2>
+            <p className="section-copy-dark">{t('services.subtitle')}</p>
+            <div className="section-divider" />
           </div>
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
               <article
                 key={service.titleKey}
-                className="group flex h-full flex-col"
+                className="soft-surface group flex h-full flex-col overflow-hidden"
               >
                 <button
                   type="button"
                   onClick={() => openServiceGallery(index)}
                   aria-label={`${t('services.gallery.open')} ${t(service.titleKey)}`}
-                  className="relative overflow-hidden mb-6 h-72 w-full rounded-lg text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#384A9C] focus:ring-offset-4"
+                  className="relative h-72 w-full cursor-pointer overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-[#384A9C] focus:ring-offset-4"
                 >
                   <ImageWithFallback
                     src={service.image}
@@ -408,41 +395,37 @@ export function Services() {
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-opacity group-hover:from-black/90" />
-                  <div className="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-3">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/84 via-black/18 to-transparent opacity-100 transition-opacity group-hover:from-black/88" />
+                  <div className="absolute left-5 right-5 top-5 flex items-start justify-between gap-3">
                     <div>
                       <span
-                        className="inline-flex items-center justify-center rounded-full border border-white/25 bg-black/45 p-2 text-white shadow-sm"
+                        className="inline-flex items-center justify-center rounded-full border border-white/20 bg-black/45 p-2.5 text-white shadow-sm"
                         style={{ fontFamily: 'Inter, sans-serif' }}
                         aria-hidden="true"
                       >
                         <Images className="h-3.5 w-3.5" />
                       </span>
                     </div>
-                    <span
-                      className="hidden sm:inline-flex rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-gray-900 shadow-sm transition-transform group-hover:-translate-y-1"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
-                    >
-                      {t('services.gallery.cta')}
-                    </span>
                   </div>
                 </button>
-                <h3
-                  className="mb-4 min-h-[1.5rem] text-xl md:text-2xl"
-                  style={{
-                    fontFamily: 'Oswald, sans-serif',
-                    fontWeight: 600,
-                    color: '#1a1a1a'
-                  }}
-                >
-                  {t(service.titleKey)}
-                </h3>
-                <p
-                  className="min-h-[6.5rem] text-sm leading-relaxed text-gray-600 md:text-[15px]"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  {t(service.descKey)}
-                </p>
+                <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
+                  <h3
+                    className="min-h-[2.5rem] text-2xl"
+                    style={{
+                      fontFamily: 'Oswald, sans-serif',
+                      fontWeight: 600,
+                      color: '#1a1a1a'
+                    }}
+                  >
+                    {t(service.titleKey)}
+                  </h3>
+                  <p
+                    className="mt-3 flex-1 text-[15px] leading-7 text-gray-600"
+                    style={{ fontFamily: 'Inter, sans-serif' }}
+                  >
+                    {t(service.descKey)}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
@@ -451,7 +434,7 @@ export function Services() {
 
       <Dialog open={activeServiceIndex !== null} onOpenChange={closeServiceGallery}>
         {activeService && (
-          <DialogContent className="h-[100dvh] w-screen max-w-none overflow-hidden border-0 bg-[#0d0d0f] p-0 text-white shadow-2xl lg:h-[94dvh] lg:w-[96vw] lg:max-w-[1800px]">
+          <DialogContent className="h-[100dvh] w-screen max-w-none overflow-hidden border-0 bg-[#0d0d0f] p-0 text-white shadow-2xl lg:h-[94dvh] lg:w-[96vw] lg:max-w-[1800px] lg:rounded-[1.75rem]">
             <div className="grid h-full min-h-0 gap-0 lg:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_400px]">
               {/* Image Area */}
               <div className="relative min-h-0 overflow-hidden bg-black">
@@ -530,10 +513,10 @@ export function Services() {
                         type="button"
                         onClick={() => setActiveImageIndex(imageIndex)}
                         aria-label={`${t('services.gallery.open')} ${t(activeService.titleKey)} ${imageIndex + 1}`}
-                        className={`overflow-hidden border transition ${imageIndex === activeImageIndex
+                        className={`overflow-hidden rounded-md border transition ${imageIndex === activeImageIndex
                           ? 'border-white shadow-[0_0_0_1px_rgba(255,255,255,0.35)]'
                           : 'border-white/10 opacity-75 hover:opacity-100'
-                          } rounded-none sm:rounded-md`}
+                          }`}
                       >
                         <ImageWithFallback
                           src={image}
@@ -641,11 +624,11 @@ export function ScaffoldingRental() {
     : [];
 
   return (
-    <section className="bg-gray-900 py-20 px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+    <section className="site-section bg-gray-900">
+      <div className="site-shell">
+        <div className="section-header mb-12">
           <h2
-            className="text-4xl md:text-5xl mb-4 text-white"
+            className="section-title-light"
             style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600
@@ -654,16 +637,17 @@ export function ScaffoldingRental() {
             {t('services.scaffolding')}
           </h2>
           <p
-            className="text-gray-300 text-lg"
+            className="section-copy-light"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             {t('services.scaffolding.subtitle')}
           </p>
+          <div className="section-divider-light" />
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-10" style={{ fontFamily: 'Inter, sans-serif' }}>
-            <div className="space-y-6">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <div className="soft-surface-dark space-y-6 p-6 sm:p-7">
               <CustomSelect
                 id="scaffolding-height"
                 label={t('services.scaffolding.height')}
@@ -681,11 +665,11 @@ export function ScaffoldingRental() {
               />
             </div>
 
-            <div className="bg-gray-800 p-6 border border-gray-700 rounded-lg">
+            <div className="soft-surface-dark p-6 sm:p-7">
               {selectedOption ? (
                 <>
                   <h3
-                    className="text-3xl mb-2 text-center text-white"
+                    className="mb-2 text-center text-3xl text-white"
                     style={{
                       fontFamily: 'Oswald, sans-serif',
                       fontWeight: 600
@@ -693,12 +677,12 @@ export function ScaffoldingRental() {
                   >
                     {selectedOption.size}
                   </h3>
-                  <p className="text-center text-white font-semibold mb-4">
+                  <p className="mb-6 text-center text-white font-semibold">
                     {t('services.scaffolding.week')} {selectedOption.weekPrice} kr
                   </p>
                   <div className="grid gap-3 text-sm text-gray-300">
                     {specItems.map((item) => (
-                      <div key={item.label} className="flex items-center justify-between border-b border-gray-700 pb-2">
+                      <div key={item.label} className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3">
                         <span className="font-medium text-gray-200">{item.label}</span>
                         <span>{item.value}</span>
                       </div>

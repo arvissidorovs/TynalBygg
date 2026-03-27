@@ -91,7 +91,8 @@ function AppContent() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -156,19 +157,19 @@ function AppContent() {
           />
 
           {/* Dark Overlay for Readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/62 via-black/52 to-black/74"></div>
         </div>
 
         {/* Navigation Bar */}
-        <nav className={`fixed top-0 left-0 right-0 z-50 px-8 sm:px-6 min-[1150px]:px-10 xl:px-16 backdrop-blur-md transition-all duration-700 ease-in-out ${isScrolled ? 'bg-black/70' : 'bg-black/30'
+        <nav className={`fixed left-0 right-0 top-0 z-50 border-b transition-all duration-700 ease-in-out ${isScrolled ? 'border-white/10 bg-black/72 shadow-[0_10px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl' : 'border-transparent bg-black/24 backdrop-blur-md'
           } ${showNavCTA ? 'py-3' : 'py-4'}`}>
-          <div className="flex items-center justify-between min-[1150px]:grid min-[1150px]:grid-cols-[1fr_auto_1fr] min-[1150px]:items-center">
+          <div className="mx-auto flex w-full max-w-[90rem] items-center justify-between px-5 sm:px-6 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center lg:px-10 xl:px-14">
             {/* Logo - Left */}
-            <div className="flex-shrink-0 -ml-2">
+            <div className="flex-shrink-0">
               <img
                 src={logoImage}
                 alt="TINAL BYGG AB"
-                className="h-12 cursor-pointer transition-opacity hover:opacity-80"
+                className="h-10 cursor-pointer transition duration-300 hover:opacity-85 sm:h-11"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               />
             </div>
@@ -176,13 +177,13 @@ function AppContent() {
             {/* Navigation Menu - Center */}
             <ul
               ref={navListRef}
-              className="relative hidden min-[1150px]:flex items-center justify-center gap-2 xl:gap-3 text-white"
+              className="relative hidden md:flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1.5 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] xl:gap-2"
               style={{ fontFamily: 'Inter, sans-serif' }}
               onMouseLeave={() => setHoveredNavIndex(null)}
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 rounded-full bg-white/10 transition-all duration-300 ease-out"
+                className="pointer-events-none absolute inset-y-1.5 rounded-full border border-white/8 bg-white/10 transition-all duration-300 ease-out"
                 style={{
                   left: `${hoverPillStyle.left}px`,
                   width: `${hoverPillStyle.width}px`,
@@ -193,12 +194,12 @@ function AppContent() {
                 ref={(element) => {
                   navItemRefs.current[0] = element;
                 }}
-                className="relative cursor-pointer rounded-full px-4 py-2"
+                className="relative cursor-pointer rounded-full px-4 py-2.5"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 onMouseEnter={() => setHoveredNavIndex(0)}
                 onFocus={() => setHoveredNavIndex(0)}
               >
-                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 0 ? 'text-white' : 'text-white/82'}`}>
+                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 0 ? 'text-white' : 'text-white/78'}`}>
                   {t('nav.home')}
                 </span>
               </li>
@@ -206,12 +207,12 @@ function AppContent() {
                 ref={(element) => {
                   navItemRefs.current[1] = element;
                 }}
-                className="relative cursor-pointer rounded-full px-4 py-2"
+                className="relative cursor-pointer rounded-full px-4 py-2.5"
                 onClick={() => scrollToSection('why-us')}
                 onMouseEnter={() => setHoveredNavIndex(1)}
                 onFocus={() => setHoveredNavIndex(1)}
               >
-                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 1 ? 'text-white' : 'text-white/82'}`}>
+                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 1 ? 'text-white' : 'text-white/78'}`}>
                   {t('nav.why-us')}
                 </span>
               </li>
@@ -219,12 +220,12 @@ function AppContent() {
                 ref={(element) => {
                   navItemRefs.current[2] = element;
                 }}
-                className="relative cursor-pointer rounded-full px-4 py-2"
+                className="relative cursor-pointer rounded-full px-4 py-2.5"
                 onClick={() => scrollToSection('services')}
                 onMouseEnter={() => setHoveredNavIndex(2)}
                 onFocus={() => setHoveredNavIndex(2)}
               >
-                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 2 ? 'text-white' : 'text-white/82'}`}>
+                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 2 ? 'text-white' : 'text-white/78'}`}>
                   {t('nav.services')}
                 </span>
               </li>
@@ -232,12 +233,12 @@ function AppContent() {
                 ref={(element) => {
                   navItemRefs.current[3] = element;
                 }}
-                className="relative cursor-pointer rounded-full px-4 py-2"
+                className="relative cursor-pointer rounded-full px-4 py-2.5"
                 onClick={() => scrollToSection('about')}
                 onMouseEnter={() => setHoveredNavIndex(3)}
                 onFocus={() => setHoveredNavIndex(3)}
               >
-                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 3 ? 'text-white' : 'text-white/82'}`}>
+                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 3 ? 'text-white' : 'text-white/78'}`}>
                   {t('nav.about')}
                 </span>
               </li>
@@ -245,65 +246,54 @@ function AppContent() {
                 ref={(element) => {
                   navItemRefs.current[4] = element;
                 }}
-                className="relative cursor-pointer rounded-full px-4 py-2"
+                className="relative cursor-pointer rounded-full px-4 py-2.5"
                 onClick={() => scrollToSection('contact')}
                 onMouseEnter={() => setHoveredNavIndex(4)}
                 onFocus={() => setHoveredNavIndex(4)}
               >
-                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 4 ? 'text-white' : 'text-white/82'}`}>
+                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 4 ? 'text-white' : 'text-white/78'}`}>
                   {t('nav.contact')}
                 </span>
               </li>
             </ul>
 
             {/* CTA & Language Switcher - Right */}
-            <div className="flex items-center justify-end gap-3 sm:gap-4 min-[1150px]:gap-6 ml-auto min-[1150px]:ml-0">{/* Changed from gap-4 to gap-6 */}
+            <div className="ml-auto flex items-center justify-end gap-3 sm:gap-4 md:ml-0 md:gap-5">
               {/* CTA Button - Only show when scrolled */}
-              {showNavCTA && (
-                <button
-                  aria-label={t('nav.cta')}
-                  className="group flex cursor-pointer items-center gap-2 overflow-hidden rounded-md bg-[#384A9C] px-3 py-2 text-white transition-all duration-300 hover:bg-[#2f3f8a] min-[1150px]:px-5 min-[1150px]:py-2"
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    boxShadow: '0 10px 24px rgba(56, 74, 156, 0.18)'
-                  }}
-                  onMouseEnter={() => playCtaLottie(navCtaLottieRef.current)}
-                  onMouseLeave={() => stopCtaLottie(navCtaLottieRef.current)}
-                  onFocus={() => playCtaLottie(navCtaLottieRef.current)}
-                  onBlur={() => stopCtaLottie(navCtaLottieRef.current)}
-                  onClick={() => window.open('https://tally.so/r/7Rx0B9', '_blank')}
-                >
-                  <span className="flex h-4 w-4 shrink-0 items-center justify-center">
-                    <DotLottieReact
-                      src={documentLottie}
-                      loop={false}
-                      autoplay={false}
-                      className="pointer-events-none h-4 w-4"
-                      dotLottieRefCallback={(dotLottie) => {
-                        navCtaLottieRef.current = dotLottie;
-                        dotLottie?.stop();
-                      }}
-                    />
-                  </span>
-                  <AnimatedCtaLabel
-                    text={t('nav.cta-short')}
-                    className="inline-flex items-center text-xs font-medium tracking-wide min-[500px]:hidden"
+              <button
+                aria-label={t('nav.cta')}
+                className={`group flex items-center justify-center rounded-full border border-white/10 bg-white/[0.04] p-2 text-white transition-all duration-300 hover:border-white/16 hover:bg-white/[0.08] ${showNavCTA
+                  ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
+                  : 'pointer-events-none -translate-y-1 scale-95 opacity-0'
+                  }`}
+                onMouseEnter={() => playCtaLottie(navCtaLottieRef.current)}
+                onMouseLeave={() => stopCtaLottie(navCtaLottieRef.current)}
+                onFocus={() => playCtaLottie(navCtaLottieRef.current)}
+                onBlur={() => stopCtaLottie(navCtaLottieRef.current)}
+                onClick={() => window.open('https://tally.so/r/7Rx0B9', '_blank')}
+              >
+                <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center">
+                  <DotLottieReact
+                    src={documentLottie}
+                    loop={false}
+                    autoplay={false}
+                    className="pointer-events-none h-[18px] w-[18px]"
+                    dotLottieRefCallback={(dotLottie) => {
+                      navCtaLottieRef.current = dotLottie;
+                      dotLottie?.stop();
+                    }}
                   />
-                  <AnimatedCtaLabel
-                    text={t('nav.cta')}
-                    className="hidden items-center text-xs font-medium tracking-wide min-[500px]:inline-flex min-[1150px]:text-sm"
-                  />
-                </button>
-              )}
+                </span>
+              </button>
 
               {/* Language Toggle */}
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-white transition-all duration-300 hover:border-white/16 hover:bg-white/[0.08]"
                 style={{ fontFamily: 'Inter, sans-serif' }}
                 aria-label={`Switch language to ${language === 'en' ? 'sv' : 'en'}`}
               >
-                <Globe className="w-5 h-5" />
+                <Globe className="h-[18px] w-[18px]" />
                 <span className="text-xs font-semibold uppercase tracking-wide sm:text-sm">
                   {language}
                 </span>
@@ -313,22 +303,21 @@ function AppContent() {
         </nav>
 
         {/* Hero Content - Centered */}
-        <div className="relative z-10 flex h-[calc(100vh-88px)] flex-col items-center justify-center px-8 text-center pt-20">
+        <div className="relative z-10 flex h-[calc(100vh-88px)] flex-col items-center justify-center px-8 pt-20 text-center">
           <h1
-            className="text-white text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-4"
+            className="mb-4 text-5xl font-bold tracking-wider text-white md:text-6xl lg:text-7xl"
             style={{ fontFamily: 'Oswald, sans-serif' }}
           >
             TINAL BYGG AB
           </h1>
 
           <p
-            className="text-white/90 text-xl md:text-2xl lg:text-3xl font-light tracking-wide max-w-2xl mb-16"
+            className="mb-16 max-w-2xl text-xl font-light tracking-wide text-white/90 md:text-2xl lg:text-3xl"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             {t('hero.subtitle')}
           </p>
 
-          {/* CTA Button */}
           <button
             ref={heroCtaRef}
             aria-label={t('nav.cta')}
@@ -360,11 +349,11 @@ function AppContent() {
 
           {/* Optional: Subtle scroll indicator */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-            <div className="flex flex-col items-center gap-2 text-white/60 px-[0px] py-[11px]">
-              <span className="text-xs tracking-widest uppercase" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <div className="flex flex-col items-center gap-2 px-[0px] py-[11px] text-white/60">
+              <span className="text-xs uppercase tracking-widest" style={{ fontFamily: 'Inter, sans-serif' }}>
                 {t('hero.scroll')}
               </span>
-              <div className="w-px h-12 bg-white/40"></div>
+              <div className="h-12 w-px bg-white/40"></div>
             </div>
           </div>
         </div>
@@ -372,20 +361,20 @@ function AppContent() {
 
       {/* All Sections Below Hero */}
       <HeroFeatures />
-      <WhyChooseUs />
-      <Services />
       <About />
+      <Services />
+      <WhyChooseUs />
       <Contact />
 
       {/* Footer */}
-      <footer className="relative isolate overflow-hidden bg-gray-900 px-8 py-12 text-white lg:px-16">
+      <footer className="relative isolate overflow-hidden bg-gray-900 px-6 py-14 text-white sm:px-8 lg:px-16">
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <div aria-hidden="true" className="pointer-events-none absolute -right-16 top-0 h-40 w-40 rounded-full bg-[#384A9C]/20 blur-3xl" />
-        <div className="relative z-10 max-w-7xl mx-auto text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-          <p className="text-gray-400 text-sm">
+        <div className="site-shell relative z-10 text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-sm text-gray-400">
             {t('footer.rights')}
           </p>
-          <p className="text-gray-500 text-xs mt-2">
+          <p className="mt-2 text-xs text-gray-500">
             {t('footer.org')}
           </p>
         </div>

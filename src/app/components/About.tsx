@@ -1,4 +1,6 @@
 import placeholder from '../../assets/11.webp';
+import overlapImageOne from '../../assets/41.webp';
+import overlapImageTwo from '../../assets/20.webp';
 import bkrBadge from '../../assets/bkr-behorig-vatrum.svg';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
@@ -26,7 +28,7 @@ export function About() {
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="relative isolate overflow-hidden bg-gray-900 px-8 py-28 lg:px-16 lg:py-32">
+    <section id="about" className="site-section isolate overflow-hidden bg-gray-900">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -70,135 +72,161 @@ export function About() {
         })}
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="site-shell relative z-10">
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Image Side */}
           <div className="order-2 lg:order-1">
-            <div className="relative h-[600px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/25">
-              <div aria-hidden="true" className="pointer-events-none absolute left-4 top-4 z-10 h-14 w-14 border-l border-t border-white/30" />
-              <div aria-hidden="true" className="pointer-events-none absolute bottom-4 right-4 z-10 h-20 w-20 border-b border-r border-[#D7DEFF]/30" />
-              <div aria-hidden="true" className="pointer-events-none absolute -left-5 top-14 hidden h-32 w-10 lg:block">
-                <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-white/20" />
-                <div className="absolute left-0 top-0 h-px w-full bg-white/25" />
-                <div className="absolute left-0 bottom-0 h-px w-full bg-white/25" />
+            <div className="relative h-[660px] sm:h-[720px] lg:h-[700px]">
+              <div className="relative h-[560px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/25 sm:h-[600px]">
+                <div aria-hidden="true" className="pointer-events-none absolute left-4 top-4 z-10 h-14 w-14 border-l border-t border-white/30" />
+                <div aria-hidden="true" className="pointer-events-none absolute bottom-4 right-4 z-10 h-20 w-20 border-b border-r border-[#D7DEFF]/30" />
+                <div aria-hidden="true" className="pointer-events-none absolute -left-5 top-14 hidden h-32 w-10 lg:block">
+                  <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-white/20" />
+                  <div className="absolute left-0 top-0 h-px w-full bg-white/25" />
+                  <div className="absolute left-0 bottom-0 h-px w-full bg-white/25" />
+                </div>
+                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-tr from-black/20 via-transparent to-[#384A9C]/10" />
+                <ImageWithFallback
+                  src={placeholder}
+                  alt="Professional craftsman at work"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-              <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-tr from-black/20 via-transparent to-[#384A9C]/10" />
-              <ImageWithFallback
-                src={placeholder}
-                alt="Professional craftsman at work"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
+
+              <div className="absolute -bottom-1 left-[-0.5rem] z-20 hidden w-[10rem] rotate-[-6deg] overflow-hidden rounded-[1.35rem] border border-white/14 bg-white/[0.06] p-2 shadow-[0_24px_52px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[-9deg] sm:block sm:-bottom-3 sm:left-1 sm:w-[15rem] lg:bottom-6 lg:left-[-2rem] lg:w-[18rem]">
+                <ImageWithFallback
+                  src={overlapImageOne}
+                  alt="Construction framing in progress"
+                  className="h-32 w-full rounded-[0.95rem] object-cover sm:h-40 lg:h-56"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div className="absolute right-[-0.35rem] top-5 z-20 hidden w-[9rem] rotate-[5deg] overflow-hidden rounded-[1.35rem] border border-white/14 bg-white/[0.06] p-2 shadow-[0_24px_52px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[8deg] sm:block sm:right-1 sm:top-8 sm:w-[11rem] lg:-right-12 lg:top-[-6rem] lg:w-[16rem]">
+                <ImageWithFallback
+                  src={overlapImageTwo}
+                  alt="Finished interior renovation"
+                  className="h-28 w-full rounded-[0.95rem] object-cover sm:h-36 lg:h-56"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
 
           {/* Text Side */}
           <div className="order-1 lg:order-2">
             <h2
-              className="mb-12 text-5xl md:text-6xl lg:mb-14"
+              className="text-4xl text-white md:text-5xl lg:text-6xl"
               style={{
                 fontFamily: 'Oswald, sans-serif',
                 fontWeight: 600,
-                color: '#FFFFFF'
+                lineHeight: '1.08'
               }}
             >
               {t('about.title')}
             </h2>
+            <div className="section-divider-light ml-0" />
 
-            <div className="space-y-6" style={{ fontFamily: 'Inter, sans-serif' }}>
-              <p className="text-white/85 text-lg leading-relaxed mb-8">
+            <div className="mt-8 space-y-6" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <p className="text-[17px] leading-8 text-white/85">
                 {t('about.intro')}
               </p>
 
-              <p className="text-white/85 text-lg leading-relaxed">
+              <p className="text-[17px] leading-8 text-white/78">
                 {t('about.work')}
               </p>
 
-              <div className="pt-8">
-                <h3
-                  className="text-2xl mb-4"
-                  style={{
-                    fontFamily: 'Oswald, sans-serif',
-                    fontWeight: 600,
-                    color: '#FFFFFF'
-                  }}
-                >
-                  {t('about.experience.title')}
-                </h3>
-                <p className="text-white/80 leading-relaxed">
-                  {t('about.experience.text')}
-                </p>
-              </div>
+              <div className="grid gap-4 pt-2">
+                <div className="soft-surface-dark px-5 py-5 sm:px-6">
+                  <h3
+                    className="text-2xl text-white"
+                    style={{
+                      fontFamily: 'Oswald, sans-serif',
+                      fontWeight: 600
+                    }}
+                  >
+                    {t('about.experience.title')}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-white/75">
+                    {t('about.experience.text')}
+                  </p>
+                </div>
 
-              <div className="pt-8">
-                <h3
-                  className="text-2xl mb-4"
-                  style={{
-                    fontFamily: 'Oswald, sans-serif',
-                    fontWeight: 600,
-                    color: '#FFFFFF'
-                  }}
-                >
-                  {t('about.reliability.title')}
-                </h3>
-                <p className="text-white/80 leading-relaxed">
-                  {t('about.reliability.text')}
-                </p>
-              </div>
+                <div className="soft-surface-dark px-5 py-5 sm:px-6">
+                  <h3
+                    className="text-2xl text-white"
+                    style={{
+                      fontFamily: 'Oswald, sans-serif',
+                      fontWeight: 600
+                    }}
+                  >
+                    {t('about.reliability.title')}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-white/75">
+                    {t('about.reliability.text')}
+                  </p>
+                </div>
 
-              <div className="pt-8">
-                <h3
-                  className="text-2xl mb-4"
-                  style={{
-                    fontFamily: 'Oswald, sans-serif',
-                    fontWeight: 600,
-                    color: '#FFFFFF'
-                  }}
-                >
-                  {t('about.quality.title')}
-                </h3>
-                <p className="text-white/80 leading-relaxed">
-                  {t('about.quality.text')}
-                </p>
+                <div className="soft-surface-dark px-5 py-5 sm:px-6">
+                  <h3
+                    className="text-2xl text-white"
+                    style={{
+                      fontFamily: 'Oswald, sans-serif',
+                      fontWeight: 600
+                    }}
+                  >
+                    {t('about.quality.title')}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-white/75">
+                    {t('about.quality.text')}
+                  </p>
 
-                <a
-                  href="https://www.bkr.se/hitta-foretag/skane/svalovs-kommun/tinal-bygg-ab/1303401"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={t('about.badge.link')}
-                  className="mt-12 flex w-full max-w-md items-center gap-5 rounded-2xl border border-white/15 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                >
-                  <img
-                    src={bkrBadge}
-                    alt={t('about.badge.alt')}
-                    className="h-24 w-24 shrink-0 rounded-2xl"
-                    loading="lazy"
-                    decoding="async"
-                  />
-
-                  <div className="min-w-0">
-                    <p
-                      className="text-xs font-semibold uppercase tracking-[0.24em] text-[#384A9C]"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                  <div className="mt-6 border-t border-white/10 pt-5">
+                    <a
+                      href="https://www.bkr.se/hitta-foretag/skane/svalovs-kommun/tinal-bygg-ab/1303401"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={t('about.badge.link')}
+                      className="group flex w-full max-w-lg items-center gap-4 text-left sm:gap-5"
                     >
-                      {t('about.badge.eyebrow')}
-                    </p>
-                    <p
-                      className="mt-2 text-base font-medium leading-snug text-gray-900"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
-                    >
-                      {t('about.badge.text')}
-                    </p>
-                    <span
-                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#384A9C]"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
-                    >
-                      {t('about.badge.link')}
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
+                      <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-[1.3rem] border border-white/12 bg-white/95 p-2 shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:-translate-y-1">
+                        <img
+                          src={bkrBadge}
+                          alt={t('about.badge.alt')}
+                          className="h-full w-full rounded-[1rem] object-contain"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+
+                      <div className="min-w-0">
+                        <p
+                          className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#D7DEFF]"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {t('about.badge.eyebrow')}
+                        </p>
+                        <p
+                          className="mt-2 text-base font-medium leading-snug text-white"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {t('about.badge.text')}
+                        </p>
+                        <span
+                          className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[#D7DEFF] transition-colors duration-300 group-hover:text-white"
+                          style={{ fontFamily: 'Inter, sans-serif' }}
+                        >
+                          {t('about.badge.link')}
+                          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </span>
+                      </div>
+                    </a>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
