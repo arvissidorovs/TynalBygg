@@ -14,10 +14,10 @@ export function HeroFeatures() {
   ];
 
   return (
-    <section className="bg-white pt-32 pb-56 px-8 lg:px-16">
+    <section className="bg-white px-8 pt-24 pb-28 lg:px-16 lg:pt-28 lg:pb-36">
       <div className="max-w-4xl mx-auto">
         <h2
-          className="mb-20 text-center"
+          className="mb-14 text-center lg:mb-16"
           style={{
             fontFamily: 'Oswald, sans-serif',
             fontWeight: 600,
@@ -29,7 +29,7 @@ export function HeroFeatures() {
           {t('hero.features.title')}
         </h2>
 
-        <div className="space-y-8" style={{ fontFamily: 'Inter, sans-serif' }}>
+        <div className="space-y-7 lg:space-y-8" style={{ fontFamily: 'Inter, sans-serif' }}>
           {features.map((feature, index) => (
             <div key={index} className="flex items-start gap-4">
               <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#384A9C' }}>
@@ -42,7 +42,7 @@ export function HeroFeatures() {
           ))}
 
           <p
-            className="mt-24 text-center"
+            className="mt-16 text-center lg:mt-20"
             style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 600,

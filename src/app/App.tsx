@@ -15,11 +15,11 @@ import { ImageWithFallback } from './components/figma/ImageWithFallback';
 
 function renderAnimatedChars(text: string, layer: 'base' | 'hover') {
   return (
-    <span data-button-animate-chars="" className="inline-flex">
+    <span data-button-animate-chars="" className="inline-flex items-center leading-none">
       {Array.from(text).map((char, index) => (
         <span
           key={`${layer}-${char}-${index}`}
-          className="inline-flex h-6 overflow-hidden align-top"
+          className="inline-flex h-[1.15em] items-center overflow-hidden align-top"
           style={{
             whiteSpace: char === ' ' ? 'pre' : undefined
           }}
@@ -41,12 +41,30 @@ function renderAnimatedChars(text: string, layer: 'base' | 'hover') {
   );
 }
 
+function AnimatedCtaLabel({ text, className = '' }: { text: string; className?: string }) {
+  return (
+    <span className={`relative overflow-hidden leading-none ${className}`}>
+      <span className="block">
+        {renderAnimatedChars(text, 'base')}
+      </span>
+      <span className="absolute inset-x-0 top-0 block">
+        {renderAnimatedChars(text, 'hover')}
+      </span>
+    </span>
+  );
+}
+
 function AppContent() {
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showNavCTA, setShowNavCTA] = useState(false);
+  const [hoveredNavIndex, setHoveredNavIndex] = useState<number | null>(null);
+  const [hoverPillStyle, setHoverPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const heroCtaRef = useRef<HTMLButtonElement>(null);
   const heroCtaLottieRef = useRef<DotLottie | null>(null);
+  const navCtaLottieRef = useRef<DotLottie | null>(null);
+  const navListRef = useRef<HTMLUListElement>(null);
+  const navItemRefs = useRef<Array<HTMLLIElement | null>>([]);
 
   // Preload hero image
   useEffect(() => {
@@ -91,17 +109,36 @@ function AppContent() {
     setLanguage(language === 'en' ? 'sv' : 'en');
   };
 
-  const playHeroCtaLottie = () => {
-    const animation = heroCtaLottieRef.current;
+  const playCtaLottie = (animation: DotLottie | null) => {
     if (!animation) return;
 
     animation.stop();
     animation.play();
   };
 
-  const stopHeroCtaLottie = () => {
-    heroCtaLottieRef.current?.stop();
+  const stopCtaLottie = (animation: DotLottie | null) => {
+    animation?.stop();
   };
+
+  useEffect(() => {
+    if (hoveredNavIndex === null) {
+      setHoverPillStyle((current) => ({ ...current, opacity: 0 }));
+      return;
+    }
+
+    const navItem = navItemRefs.current[hoveredNavIndex];
+    const navList = navListRef.current;
+    if (!navItem || !navList) return;
+
+    const itemRect = navItem.getBoundingClientRect();
+    const listRect = navList.getBoundingClientRect();
+
+    setHoverPillStyle({
+      left: itemRect.left - listRect.left,
+      width: itemRect.width,
+      opacity: 1
+    });
+  }, [hoveredNavIndex, language]);
 
   return (
     <div className="relative w-full overflow-hidden bg-gray-900">
@@ -123,7 +160,7 @@ function AppContent() {
         </div>
 
         {/* Navigation Bar */}
-        <nav className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 min-[1150px]:px-10 xl:px-16 backdrop-blur-md transition-all duration-700 ease-in-out ${isScrolled ? 'bg-black/70' : 'bg-black/30'
+        <nav className={`fixed top-0 left-0 right-0 z-50 px-8 sm:px-6 min-[1150px]:px-10 xl:px-16 backdrop-blur-md transition-all duration-700 ease-in-out ${isScrolled ? 'bg-black/70' : 'bg-black/30'
           } ${showNavCTA ? 'py-3' : 'py-4'}`}>
           <div className="flex items-center justify-between min-[1150px]:grid min-[1150px]:grid-cols-[1fr_auto_1fr] min-[1150px]:items-center">
             {/* Logo - Left */}
@@ -137,21 +174,85 @@ function AppContent() {
             </div>
 
             {/* Navigation Menu - Center */}
-            <ul className="hidden min-[1150px]:flex items-center gap-4 xl:gap-6 text-white justify-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-              <li className="cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide text-base" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                {t('nav.home')}
+            <ul
+              ref={navListRef}
+              className="relative hidden min-[1150px]:flex items-center justify-center gap-2 xl:gap-3 text-white"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+              onMouseLeave={() => setHoveredNavIndex(null)}
+            >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 rounded-full bg-white/10 transition-all duration-300 ease-out"
+                style={{
+                  left: `${hoverPillStyle.left}px`,
+                  width: `${hoverPillStyle.width}px`,
+                  opacity: hoverPillStyle.opacity
+                }}
+              />
+              <li
+                ref={(element) => {
+                  navItemRefs.current[0] = element;
+                }}
+                className="relative cursor-pointer rounded-full px-4 py-2"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onMouseEnter={() => setHoveredNavIndex(0)}
+                onFocus={() => setHoveredNavIndex(0)}
+              >
+                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 0 ? 'text-white' : 'text-white/82'}`}>
+                  {t('nav.home')}
+                </span>
               </li>
-              <li className="cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide text-base" onClick={() => scrollToSection('why-us')}>
-                {t('nav.why-us')}
+              <li
+                ref={(element) => {
+                  navItemRefs.current[1] = element;
+                }}
+                className="relative cursor-pointer rounded-full px-4 py-2"
+                onClick={() => scrollToSection('why-us')}
+                onMouseEnter={() => setHoveredNavIndex(1)}
+                onFocus={() => setHoveredNavIndex(1)}
+              >
+                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 1 ? 'text-white' : 'text-white/82'}`}>
+                  {t('nav.why-us')}
+                </span>
               </li>
-              <li className="cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide text-base" onClick={() => scrollToSection('services')}>
-                {t('nav.services')}
+              <li
+                ref={(element) => {
+                  navItemRefs.current[2] = element;
+                }}
+                className="relative cursor-pointer rounded-full px-4 py-2"
+                onClick={() => scrollToSection('services')}
+                onMouseEnter={() => setHoveredNavIndex(2)}
+                onFocus={() => setHoveredNavIndex(2)}
+              >
+                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 2 ? 'text-white' : 'text-white/82'}`}>
+                  {t('nav.services')}
+                </span>
               </li>
-              <li className="cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide text-base" onClick={() => scrollToSection('about')}>
-                {t('nav.about')}
+              <li
+                ref={(element) => {
+                  navItemRefs.current[3] = element;
+                }}
+                className="relative cursor-pointer rounded-full px-4 py-2"
+                onClick={() => scrollToSection('about')}
+                onMouseEnter={() => setHoveredNavIndex(3)}
+                onFocus={() => setHoveredNavIndex(3)}
+              >
+                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 3 ? 'text-white' : 'text-white/82'}`}>
+                  {t('nav.about')}
+                </span>
               </li>
-              <li className="cursor-pointer transition-all duration-300 hover:text-gray-300 font-medium tracking-wide text-base" onClick={() => scrollToSection('contact')}>
-                {t('nav.contact')}
+              <li
+                ref={(element) => {
+                  navItemRefs.current[4] = element;
+                }}
+                className="relative cursor-pointer rounded-full px-4 py-2"
+                onClick={() => scrollToSection('contact')}
+                onMouseEnter={() => setHoveredNavIndex(4)}
+                onFocus={() => setHoveredNavIndex(4)}
+              >
+                <span className={`relative block font-medium tracking-wide text-base transition-all duration-300 ease-out ${hoveredNavIndex === 4 ? 'text-white' : 'text-white/82'}`}>
+                  {t('nav.contact')}
+                </span>
               </li>
             </ul>
 
@@ -161,13 +262,37 @@ function AppContent() {
               {showNavCTA && (
                 <button
                   aria-label={t('nav.cta')}
-                  className="text-white px-3 py-2 min-[1150px]:px-5 min-[1150px]:py-2 font-medium text-xs min-[1150px]:text-sm tracking-wide transition-all hover:shadow-md hover:bg-[#2f3f8a] animate-fadeIn border-r-2 cursor-pointer rounded-md bg-[#384A9C] flex items-center gap-2"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  className="group flex cursor-pointer items-center gap-2 overflow-hidden rounded-md bg-[#384A9C] px-3 py-2 text-white transition-all duration-300 hover:bg-[#2f3f8a] min-[1150px]:px-5 min-[1150px]:py-2"
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    boxShadow: '0 10px 24px rgba(56, 74, 156, 0.18)'
+                  }}
+                  onMouseEnter={() => playCtaLottie(navCtaLottieRef.current)}
+                  onMouseLeave={() => stopCtaLottie(navCtaLottieRef.current)}
+                  onFocus={() => playCtaLottie(navCtaLottieRef.current)}
+                  onBlur={() => stopCtaLottie(navCtaLottieRef.current)}
                   onClick={() => window.open('https://tally.so/r/7Rx0B9', '_blank')}
                 >
-                  <FileText className="h-4 w-4" />
-                  <span className="min-[500px]:hidden">Fill application</span>
-                  <span className="hidden min-[500px]:inline">{t('nav.cta')}</span>
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                    <DotLottieReact
+                      src={documentLottie}
+                      loop={false}
+                      autoplay={false}
+                      className="pointer-events-none h-4 w-4"
+                      dotLottieRefCallback={(dotLottie) => {
+                        navCtaLottieRef.current = dotLottie;
+                        dotLottie?.stop();
+                      }}
+                    />
+                  </span>
+                  <AnimatedCtaLabel
+                    text={t('nav.cta-short')}
+                    className="inline-flex items-center text-xs font-medium tracking-wide min-[500px]:hidden"
+                  />
+                  <AnimatedCtaLabel
+                    text={t('nav.cta')}
+                    className="hidden items-center text-xs font-medium tracking-wide min-[500px]:inline-flex min-[1150px]:text-sm"
+                  />
                 </button>
               )}
 
@@ -212,10 +337,10 @@ function AppContent() {
               fontFamily: 'Inter, sans-serif',
               boxShadow: '0 10px 24px rgba(56, 74, 156, 0.22)'
             }}
-            onMouseEnter={playHeroCtaLottie}
-            onMouseLeave={stopHeroCtaLottie}
-            onFocus={playHeroCtaLottie}
-            onBlur={stopHeroCtaLottie}
+            onMouseEnter={() => playCtaLottie(heroCtaLottieRef.current)}
+            onMouseLeave={() => stopCtaLottie(heroCtaLottieRef.current)}
+            onFocus={() => playCtaLottie(heroCtaLottieRef.current)}
+            onBlur={() => stopCtaLottie(heroCtaLottieRef.current)}
             onClick={() => window.open('https://tally.so/r/7Rx0B9', '_blank')}
           >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center">
@@ -230,14 +355,7 @@ function AppContent() {
                 }}
               />
             </span>
-            <span className="relative block h-6 overflow-hidden text-base font-medium tracking-wide">
-              <span className="block">
-                {renderAnimatedChars(t('nav.cta'), 'base')}
-              </span>
-              <span className="absolute inset-x-0 top-0 block">
-                {renderAnimatedChars(t('nav.cta'), 'hover')}
-              </span>
-            </span>
+            <AnimatedCtaLabel text={t('nav.cta')} className="inline-flex items-center text-base font-medium tracking-wide" />
           </button>
 
           {/* Optional: Subtle scroll indicator */}
@@ -260,8 +378,10 @@ function AppContent() {
       <Contact />
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <footer className="relative isolate overflow-hidden bg-gray-900 px-8 py-12 text-white lg:px-16">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-16 top-0 h-40 w-40 rounded-full bg-[#384A9C]/20 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
           <p className="text-gray-400 text-sm">
             {t('footer.rights')}
           </p>

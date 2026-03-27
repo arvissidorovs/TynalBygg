@@ -253,11 +253,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="bg-white py-40 px-8 lg:px-16"
+      className="bg-white px-8 py-28 lg:px-16 lg:py-32"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="mb-16 text-center lg:mb-20">
           <h2
             style={{
               fontFamily: "Oswald, sans-serif",
@@ -281,7 +281,7 @@ export function Contact() {
         </div>
 
         {/* Team Members */}
-        <div className="mb-48">
+        <div className="mb-24 lg:mb-28">
           <h3
             className="mb-6 text-center"
             style={{
@@ -362,7 +362,7 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Contact Information */}
           <div>
             <h3

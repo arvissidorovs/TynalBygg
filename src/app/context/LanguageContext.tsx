@@ -20,10 +20,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
     'nav.cta': 'Fill in the application form',
+    'nav.cta-short': 'Fill application',
 
     // Hero
     'hero.title': 'TINAL BYGG AB',
-    'hero.subtitle': 'A partner you can trust',
+    'hero.subtitle': 'A construction company you can trust',
     'hero.scroll': 'Scroll',
 
     // Hero Features
@@ -142,10 +143,11 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.gallery': 'Galleri',
     'nav.contact': 'Kontakt',
     'nav.cta': 'Fyll i ansökningsformulär',
+    'nav.cta-short': 'Fyll i formulär',
 
     // Hero
     'hero.title': 'TINAL BYGG AB',
-    'hero.subtitle': 'En partner du kan lita på',
+    'hero.subtitle': 'Ett byggföretag du kan lita på',
     'hero.scroll': 'Scrolla',
 
     // Hero Features
@@ -264,6 +266,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.gallery': 'Galerija',
     'nav.contact': 'Kontakti',
     'nav.cta': 'Aizpildīt pieteikuma veidlapu',
+    'nav.cta-short': 'Aizpildīt formu',
 
     // Hero
     'hero.title': 'TINAL BYGG AB',

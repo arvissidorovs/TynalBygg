@@ -368,9 +368,9 @@ export function Services() {
 
   return (
     <>
-      <section id="services" className="bg-white py-48 px-8 lg:px-16">
+      <section id="services" className="bg-white px-8 py-28 lg:px-16 lg:py-32">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="mb-16 text-center lg:mb-20">
             <h2
               className="text-5xl md:text-6xl mb-4"
               style={{

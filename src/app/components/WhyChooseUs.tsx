@@ -28,11 +28,26 @@ export function WhyChooseUs() {
   const { t } = useLanguage();
 
   return (
-    <section id="why-us" className="bg-gray-900 px-6 pt-40 pb-56 text-white lg:px-12">
-      <div className="mx-auto max-w-7xl">
+    <section id="why-us" className="relative isolate overflow-hidden bg-gray-900 px-6 py-28 text-white lg:px-12 lg:py-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(215,222,255,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(215,222,255,0.09) 1px, transparent 1px), radial-gradient(circle at top, rgba(56,74,156,0.14), transparent 58%)',
+          backgroundSize: '56px 56px, 56px 56px, 100% 100%',
+          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.72))'
+        }}
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-24 h-64 w-64 rounded-full bg-[#384A9C]/20 blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-10 top-0 h-full w-px origin-top rotate-[12deg] bg-white/10" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-[12%] top-0 h-full w-px origin-top -rotate-[12deg] bg-white/10" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
 
         {/* Section Header */}
-        <div className="mx-auto mb-24 max-w-2xl text-center lg:mb-28">
+        <div className="mx-auto mb-16 max-w-2xl text-center lg:mb-20">
           <h2
             className="text-4xl md:text-5xl"
             style={{
@@ -56,7 +71,7 @@ export function WhyChooseUs() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid gap-x-8 gap-y-12 md:gap-x-12 md:gap-y-16 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-x-8 gap-y-10 md:grid-cols-2 md:gap-x-12 md:gap-y-12 lg:grid-cols-4 lg:gap-y-14">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
