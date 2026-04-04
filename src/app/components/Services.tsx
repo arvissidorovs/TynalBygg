@@ -1,32 +1,68 @@
-import paintingImage from '../../assets/10.webp';
-import electricalWork from '../../assets/16.webp';
-import tileSetting from '../../assets/5.webp';
-import roofTiling from '../../assets/13.webp';
-import windows from '../../assets/8.webp';
-import masonry from '../../assets/14.webp';
-import pool from '../../assets/52.webp';
-import houseRenovation from '../../assets/35.webp';
-import sheetMetalWork from '../../assets/37.webp';
+/** Painting */
+import painting_1 from '../../assets/10.webp';
+import painting_2 from '../../assets/19.webp'
+import painting_3 from '../../assets/48.webp';
+
+/** Electrical Work */
+import electrical_1 from '../../assets/16.webp';
+
+/** Tile Setting */
+import tile_1 from '../../assets/5.webp';
+import tile_2 from '../../assets/4.webp';
+import tile_3 from '../../assets/22.webp';
+import tile_4 from '../../assets/29.webp';
+import tile_5 from '../../assets/30.webp';
+import tile_6 from '../../assets/45.webp';
+import tile_7 from '../../assets/53.webp';
+
+/** Roof Tiling */
+import roof_1 from '../../assets/13.webp';
+import roof_2 from '../../assets/3.webp';
+import roof_3 from '../../assets/7.webp';
+import roof_4 from '../../assets/21.webp';
+import roof_5 from '../../assets/32.webp';
+import roof_6 from '../../assets/34.webp';
+import roof_7 from '../../assets/61.webp';
+
+/** Windows */
+import windows_1 from '../../assets/8.webp';
+import windows_2 from '../../assets/23.webp';
+import windows_3 from '../../assets/46.webp';
+import windows_4 from '../../assets/50.webp';
+
+/** Masonry */
+import masonry_1 from '../../assets/14.webp';
+import masonry_2 from '../../assets/28.webp';
+
+/** Pool Construction */
+import pool_1 from '../../assets/52.webp';
+
+/** House Renovation */
+import renovation_2 from '../../assets/2.webp';
+import renovation_3 from '../../assets/6.webp';
+import renovation_4 from '../../assets/17.webp';
+import renovation_5 from '../../assets/20.webp';
+import renovation_6 from '../../assets/31.webp';
+import renovation_7 from '../../assets/41.webp';
+import renovation_8 from '../../assets/47.webp';
+import renovation_9 from '../../assets/51.webp';
+import renovation_10 from '../../assets/60.webp';
+
+/** Sheet Metal Work */
+import sheet_1 from '../../assets/37.webp';
+import sheet_2 from '../../assets/12.webp';
+import sheet_3 from '../../assets/25.webp';
+import sheet_4 from '../../assets/26.webp';
+import sheet_5 from '../../assets/37.webp';
+import sheet_6 from '../../assets/38.webp';
+import sheet_7 from '../../assets/42.webp';
+import sheet_8 from '../../assets/49.webp';
+import sheet_9 from '../../assets/70.webp';
+
+/** Concrete Work */
 import concreteWork from '../../assets/18.webp';
-import image_2 from '../../assets/2.webp';
-import image_3 from '../../assets/3.webp';
-import image_4 from '../../assets/4.webp';
-import image_6 from '../../assets/6.webp';
-import image_7 from '../../assets/7.webp';
-import image_20 from '../../assets/20.webp';
-import image_21 from '../../assets/21.webp';
-import image_29 from '../../assets/29.webp';
-import image_31 from '../../assets/31.webp';
-import image_34 from '../../assets/34.webp';
-import image_37 from '../../assets/37.webp';
-import image_39 from '../../assets/39.webp';
-import image_41 from '../../assets/41.webp';
-import image_46 from '../../assets/46.webp';
-import image_48 from '../../assets/48.webp';
-import image_49 from '../../assets/49.webp';
-import image_50 from '../../assets/50.webp';
-import image_51 from '../../assets/51.webp';
-import { ChevronDown, ChevronLeft, ChevronRight, Images } from 'lucide-react';
+
+import { ChevronDown, ChevronLeft, ChevronRight, Images, LoaderCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
 import { useMemo, useState, useEffect, useRef } from 'react';
@@ -43,56 +79,56 @@ const services: ServiceItem[] = [
   {
     titleKey: 'services.painter',
     descKey: 'services.painter.desc',
-    image: paintingImage,
-    gallery: [paintingImage, image_2, image_37, image_4]
+    image: painting_1,
+    gallery: [painting_1, painting_2, painting_3]
   },
   {
     titleKey: 'services.electrician',
     descKey: 'services.electrician.desc',
-    image: electricalWork,
-    gallery: [electricalWork, image_46, image_20]
+    image: electrical_1,
+    gallery: [electrical_1]
   },
   {
     titleKey: 'services.tile',
     descKey: 'services.tile.desc',
-    image: tileSetting,
-    gallery: [tileSetting, image_39, image_29]
+    image: tile_1,
+    gallery: [tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7]
   },
   {
     titleKey: 'services.roof',
     descKey: 'services.roof.desc',
-    image: roofTiling,
-    gallery: [roofTiling, image_3, image_7, image_21, image_34]
+    image: roof_1,
+    gallery: [roof_1, roof_2, roof_3, roof_4, roof_5, roof_6, roof_7]
   },
   {
     titleKey: 'services.windows',
     descKey: 'services.windows.desc',
-    image: windows,
-    gallery: [windows, image_46, image_50]
+    image: windows_1,
+    gallery: [windows_1, windows_2, windows_3, windows_4]
   },
   {
     titleKey: 'services.masonry',
     descKey: 'services.masonry.desc',
-    image: masonry,
-    gallery: [masonry, concreteWork, image_41]
+    image: masonry_1,
+    gallery: [masonry_1, masonry_2]
   },
   {
     titleKey: 'services.pool',
     descKey: 'services.pool.desc',
-    image: pool,
-    gallery: [pool, image_49, image_48]
+    image: pool_1,
+    gallery: [pool_1]
   },
   {
     titleKey: 'services.renovation',
     descKey: 'services.renovation.desc',
-    image: houseRenovation,
-    gallery: [houseRenovation, image_31, image_51, image_6, image_20]
+    image: renovation_2,
+    gallery: [renovation_2, renovation_3, renovation_4, renovation_5, renovation_6, renovation_7, renovation_8, renovation_9, renovation_10]
   },
   {
     titleKey: 'services.metal',
     descKey: 'services.metal.desc',
-    image: sheetMetalWork,
-    gallery: [sheetMetalWork, image_41, image_48]
+    image: sheet_1,
+    gallery: [sheet_1, sheet_2, sheet_3, sheet_4, sheet_5, sheet_6, sheet_7, sheet_8, sheet_9]
   }
 ];
 
@@ -204,10 +240,12 @@ export function Services() {
   const { t } = useLanguage();
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isViewerImageLoading, setIsViewerImageLoading] = useState(false);
   const navigationLockRef = useRef(false);
 
   const activeService =
     activeServiceIndex !== null ? services[activeServiceIndex] : null;
+  const activeViewerImage = activeService?.gallery[activeImageIndex] ?? null;
 
   useEffect(() => {
     if (activeServiceIndex === null || !activeService) return;
@@ -237,6 +275,10 @@ export function Services() {
       return current;
     });
   }, [activeService]);
+
+  useEffect(() => {
+    setIsViewerImageLoading(Boolean(activeViewerImage));
+  }, [activeViewerImage]);
 
   const selectableOptions = useMemo(
     () =>
@@ -468,13 +510,25 @@ export function Services() {
                   <ChevronRight className="h-5 w-5" />
                 </button>
 
-                <div className="flex h-[64dvh] w-full items-center justify-center overflow-hidden sm:h-[68dvh] lg:h-full lg:min-h-0 lg:p-6 xl:p-8">
+                <div className="relative flex h-[64dvh] w-full items-center justify-center overflow-hidden sm:h-[68dvh] lg:h-full lg:min-h-0 lg:p-6 xl:p-8">
+                  {isViewerImageLoading && (
+                    <div
+                      className="absolute inset-0 z-[1] flex items-center justify-center bg-black/30"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <LoaderCircle className="h-8 w-8 animate-spin text-white/85" />
+                      <span className="sr-only">Loading image</span>
+                    </div>
+                  )}
                   <ImageWithFallback
-                    src={activeService.gallery[activeImageIndex]}
+                    src={activeViewerImage}
                     alt={`${t(activeService.titleKey)} ${activeImageIndex + 1}`}
-                    className="block max-h-full max-w-full object-contain"
+                    className={`block max-h-full max-w-full object-contain transition-opacity duration-200 ${isViewerImageLoading ? 'opacity-0' : 'opacity-100'}`}
                     loading="eager"
                     decoding="async"
+                    onLoad={() => setIsViewerImageLoading(false)}
+                    onError={() => setIsViewerImageLoading(false)}
                   />
                 </div>
               </div>

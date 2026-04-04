@@ -41,7 +41,10 @@ export function WhyChooseUs() {
       />
       <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-24 h-64 w-64 rounded-full bg-[#384A9C]/20 blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-10 top-0 h-full w-px origin-top rotate-[12deg] bg-white/10" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-14 top-0 h-full w-px origin-top rotate-[4deg] bg-white/10 md:-right-12 md:rotate-[7deg] lg:-right-10 lg:rotate-[12deg]"
+      />
       <div aria-hidden="true" className="pointer-events-none absolute left-[12%] top-0 hidden h-full w-px origin-top -rotate-[12deg] bg-white/10 lg:block" />
 
       <div className="site-shell relative z-10">

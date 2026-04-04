@@ -359,12 +359,6 @@ export function Contact() {
             >
               {t("contact.getintouch")}
             </h3>
-            <p
-              className="mb-8 max-w-md text-[15px] leading-7 text-gray-600"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              {t("contact.subtitle")}
-            </p>
 
             <div
               className="space-y-5"
