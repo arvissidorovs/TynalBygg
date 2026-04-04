@@ -62,7 +62,7 @@ import sheet_9 from '../../assets/70.webp';
 /** Concrete Work */
 import concreteWork from '../../assets/18.webp';
 
-import { ChevronDown, ChevronLeft, ChevronRight, Images } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, Images, LoaderCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
 import { useMemo, useState, useEffect, useRef } from 'react';
@@ -240,10 +240,12 @@ export function Services() {
   const { t } = useLanguage();
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isViewerImageLoading, setIsViewerImageLoading] = useState(false);
   const navigationLockRef = useRef(false);
 
   const activeService =
     activeServiceIndex !== null ? services[activeServiceIndex] : null;
+  const activeViewerImage = activeService?.gallery[activeImageIndex] ?? null;
 
   useEffect(() => {
     if (activeServiceIndex === null || !activeService) return;
@@ -273,6 +275,10 @@ export function Services() {
       return current;
     });
   }, [activeService]);
+
+  useEffect(() => {
+    setIsViewerImageLoading(Boolean(activeViewerImage));
+  }, [activeViewerImage]);
 
   const selectableOptions = useMemo(
     () =>
@@ -504,13 +510,25 @@ export function Services() {
                   <ChevronRight className="h-5 w-5" />
                 </button>
 
-                <div className="flex h-[64dvh] w-full items-center justify-center overflow-hidden sm:h-[68dvh] lg:h-full lg:min-h-0 lg:p-6 xl:p-8">
+                <div className="relative flex h-[64dvh] w-full items-center justify-center overflow-hidden sm:h-[68dvh] lg:h-full lg:min-h-0 lg:p-6 xl:p-8">
+                  {isViewerImageLoading && (
+                    <div
+                      className="absolute inset-0 z-[1] flex items-center justify-center bg-black/30"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <LoaderCircle className="h-8 w-8 animate-spin text-white/85" />
+                      <span className="sr-only">Loading image</span>
+                    </div>
+                  )}
                   <ImageWithFallback
-                    src={activeService.gallery[activeImageIndex]}
+                    src={activeViewerImage}
                     alt={`${t(activeService.titleKey)} ${activeImageIndex + 1}`}
-                    className="block max-h-full max-w-full object-contain"
+                    className={`block max-h-full max-w-full object-contain transition-opacity duration-200 ${isViewerImageLoading ? 'opacity-0' : 'opacity-100'}`}
                     loading="eager"
                     decoding="async"
+                    onLoad={() => setIsViewerImageLoading(false)}
+                    onError={() => setIsViewerImageLoading(false)}
                   />
                 </div>
               </div>
