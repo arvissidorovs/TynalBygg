@@ -95,21 +95,21 @@ export function About() {
                 />
               </div>
 
-              <div className="absolute -bottom-1 left-[-0.5rem] z-20 hidden w-[10rem] rotate-[-6deg] overflow-hidden rounded-[1.35rem] border border-white/14 bg-white/[0.06] p-2 shadow-[0_24px_52px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[-9deg] sm:block sm:-bottom-3 sm:left-1 sm:w-[15rem] lg:bottom-6 lg:left-[-2rem] lg:w-[18rem]">
+              <div className="absolute bottom-3 left-3 z-20 w-[10.5rem] rotate-[-6deg] overflow-hidden rounded-[1.2rem] border border-white/8 bg-white/[0.025] p-1 shadow-[0_20px_44px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[-9deg] sm:bottom-4 sm:left-4 sm:w-[12rem] md:bottom-5 md:left-6 md:w-[14rem] lg:bottom-6 lg:left-4 lg:w-[16rem]">
                 <ImageWithFallback
                   src={overlapImageOne}
                   alt="Construction framing in progress"
-                  className="h-32 w-full rounded-[0.95rem] object-cover sm:h-40 lg:h-56"
+                  className="h-28 w-full rounded-[0.9rem] object-cover sm:h-32 md:h-40 lg:h-48"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
 
-              <div className="absolute right-[-0.35rem] top-5 z-20 hidden w-[9rem] rotate-[5deg] overflow-hidden rounded-[1.35rem] border border-white/14 bg-white/[0.06] p-2 shadow-[0_24px_52px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[8deg] sm:block sm:right-1 sm:top-8 sm:w-[11rem] lg:-right-12 lg:top-[-6rem] lg:w-[16rem]">
+              <div className="absolute right-2 top-3 z-20 w-[9rem] rotate-[5deg] overflow-hidden rounded-[1.2rem] border border-white/8 bg-white/[0.025] p-1 shadow-[0_20px_44px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[8deg] sm:right-3 sm:top-4 sm:w-[10rem] md:right-5 md:top-6 md:w-[11.5rem] lg:right-4 lg:top-8 lg:w-[13.5rem]">
                 <ImageWithFallback
                   src={overlapImageTwo}
                   alt="Finished interior renovation"
-                  className="h-28 w-full rounded-[0.95rem] object-cover sm:h-36 lg:h-56"
+                  className="h-24 w-full rounded-[0.9rem] object-cover sm:h-28 md:h-36 lg:h-44"
                   loading="lazy"
                   decoding="async"
                 />

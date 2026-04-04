@@ -54,10 +54,19 @@ function AnimatedCtaLabel({ text, className = '' }: { text: string; className?: 
   );
 }
 
+const navItems = [
+  { labelKey: 'nav.home', sectionId: null },
+  { labelKey: 'nav.about', sectionId: 'about' },
+  { labelKey: 'nav.services', sectionId: 'services' },
+  { labelKey: 'nav.why-us', sectionId: 'why-us' },
+  { labelKey: 'nav.contact', sectionId: 'contact' }
+] as const;
+
 function AppContent() {
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showNavCTA, setShowNavCTA] = useState(false);
+  const [activeNavIndex, setActiveNavIndex] = useState(0);
   const [hoveredNavIndex, setHoveredNavIndex] = useState<number | null>(null);
   const [hoverPillStyle, setHoverPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const heroCtaRef = useRef<HTMLButtonElement>(null);
@@ -89,6 +98,35 @@ function AppContent() {
         // Show nav CTA when hero CTA has scrolled past the top of viewport
         setShowNavCTA(rect.bottom < 0);
       }
+
+      const viewportMarker = window.scrollY + 140;
+      const sectionEntries = navItems
+        .map((item, index) => {
+          if (!item.sectionId) {
+            return null;
+          }
+
+          const element = document.getElementById(item.sectionId);
+          if (!element) {
+            return null;
+          }
+
+          return {
+            index,
+            top: element.offsetTop
+          };
+        })
+        .filter((entry): entry is { index: number; top: number } => entry !== null)
+        .sort((a, b) => a.top - b.top);
+
+      let nextActiveIndex = 0;
+      for (const entry of sectionEntries) {
+        if (viewportMarker >= entry.top) {
+          nextActiveIndex = entry.index;
+        }
+      }
+
+      setActiveNavIndex(nextActiveIndex);
     };
 
     handleScroll();
@@ -97,7 +135,14 @@ function AppContent() {
   }, []);
 
   // Smooth scroll function
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId: string | null, navIndex: number) => {
+    setActiveNavIndex(navIndex);
+
+    if (!sectionId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       const yOffset = -80; // Offset for fixed header
@@ -122,14 +167,14 @@ function AppContent() {
   };
 
   useEffect(() => {
-    if (hoveredNavIndex === null) {
+    const visibleNavIndex = hoveredNavIndex ?? activeNavIndex;
+
+    const navItem = navItemRefs.current[visibleNavIndex];
+    const navList = navListRef.current;
+    if (!navItem || !navList) {
       setHoverPillStyle((current) => ({ ...current, opacity: 0 }));
       return;
     }
-
-    const navItem = navItemRefs.current[hoveredNavIndex];
-    const navList = navListRef.current;
-    if (!navItem || !navList) return;
 
     const itemRect = navItem.getBoundingClientRect();
     const listRect = navList.getBoundingClientRect();
@@ -139,7 +184,7 @@ function AppContent() {
       width: itemRect.width,
       opacity: 1
     });
-  }, [hoveredNavIndex, language]);
+  }, [activeNavIndex, hoveredNavIndex, language]);
 
   return (
     <div className="relative w-full overflow-hidden bg-gray-900">
@@ -177,84 +222,40 @@ function AppContent() {
             {/* Navigation Menu - Center */}
             <ul
               ref={navListRef}
-              className="relative hidden md:flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1.5 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] xl:gap-2"
+              className="relative hidden md:flex items-center justify-center gap-3 rounded-full border border-white/5 bg-white/[0.02] p-1 text-white xl:gap-4"
               style={{ fontFamily: 'Inter, sans-serif' }}
               onMouseLeave={() => setHoveredNavIndex(null)}
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-1.5 rounded-full border border-white/8 bg-white/10 transition-all duration-300 ease-out"
+                className="pointer-events-none absolute inset-y-1 rounded-full bg-white/8 transition-all duration-300 ease-out"
                 style={{
                   left: `${hoverPillStyle.left}px`,
                   width: `${hoverPillStyle.width}px`,
                   opacity: hoverPillStyle.opacity
                 }}
               />
-              <li
-                ref={(element) => {
-                  navItemRefs.current[0] = element;
-                }}
-                className="relative cursor-pointer rounded-full px-4 py-2.5"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                onMouseEnter={() => setHoveredNavIndex(0)}
-                onFocus={() => setHoveredNavIndex(0)}
-              >
-                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 0 ? 'text-white' : 'text-white/78'}`}>
-                  {t('nav.home')}
-                </span>
-              </li>
-              <li
-                ref={(element) => {
-                  navItemRefs.current[1] = element;
-                }}
-                className="relative cursor-pointer rounded-full px-4 py-2.5"
-                onClick={() => scrollToSection('why-us')}
-                onMouseEnter={() => setHoveredNavIndex(1)}
-                onFocus={() => setHoveredNavIndex(1)}
-              >
-                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 1 ? 'text-white' : 'text-white/78'}`}>
-                  {t('nav.why-us')}
-                </span>
-              </li>
-              <li
-                ref={(element) => {
-                  navItemRefs.current[2] = element;
-                }}
-                className="relative cursor-pointer rounded-full px-4 py-2.5"
-                onClick={() => scrollToSection('services')}
-                onMouseEnter={() => setHoveredNavIndex(2)}
-                onFocus={() => setHoveredNavIndex(2)}
-              >
-                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 2 ? 'text-white' : 'text-white/78'}`}>
-                  {t('nav.services')}
-                </span>
-              </li>
-              <li
-                ref={(element) => {
-                  navItemRefs.current[3] = element;
-                }}
-                className="relative cursor-pointer rounded-full px-4 py-2.5"
-                onClick={() => scrollToSection('about')}
-                onMouseEnter={() => setHoveredNavIndex(3)}
-                onFocus={() => setHoveredNavIndex(3)}
-              >
-                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 3 ? 'text-white' : 'text-white/78'}`}>
-                  {t('nav.about')}
-                </span>
-              </li>
-              <li
-                ref={(element) => {
-                  navItemRefs.current[4] = element;
-                }}
-                className="relative cursor-pointer rounded-full px-4 py-2.5"
-                onClick={() => scrollToSection('contact')}
-                onMouseEnter={() => setHoveredNavIndex(4)}
-                onFocus={() => setHoveredNavIndex(4)}
-              >
-                <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${hoveredNavIndex === 4 ? 'text-white' : 'text-white/78'}`}>
-                  {t('nav.contact')}
-                </span>
-              </li>
+              {navItems.map((item, index) => {
+                const isActive = index === activeNavIndex;
+                const isHovered = index === hoveredNavIndex;
+
+                return (
+                  <li
+                    key={item.labelKey}
+                    ref={(element) => {
+                      navItemRefs.current[index] = element;
+                    }}
+                    className="relative cursor-pointer rounded-full px-4 py-2.5"
+                    onClick={() => scrollToSection(item.sectionId, index)}
+                    onMouseEnter={() => setHoveredNavIndex(index)}
+                    onFocus={() => setHoveredNavIndex(index)}
+                  >
+                    <span className={`relative block text-[15px] font-medium tracking-[0.02em] transition-all duration-300 ease-out ${isActive || isHovered ? 'text-white' : 'text-white/70'}`}>
+                      {t(item.labelKey)}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* CTA & Language Switcher - Right */}

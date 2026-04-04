@@ -13,13 +13,16 @@ export function HeroFeatures() {
     'hero.features.6'
   ];
 
-  const cardOffsets = [
-    'md:translate-y-0',
-    'md:translate-y-10',
-    'md:translate-y-1',
-    'md:translate-y-10',
-    'md:translate-y-2',
-    'md:translate-y-11'
+  const featurePairs = [
+    [features[0], features[1]],
+    [features[2], features[3]],
+    [features[4], features[5]]
+  ];
+
+  const rowOffsets = [
+    { left: 'md:translate-y-0', right: 'md:translate-y-12' },
+    { left: 'md:translate-y-4', right: 'md:translate-y-16' },
+    { left: 'md:translate-y-8', right: 'md:translate-y-20' }
   ];
 
   return (
@@ -39,57 +42,73 @@ export function HeroFeatures() {
       <div className="site-shell-narrow relative z-10">
         <div className="section-header max-w-2xl">
           <h2 className="section-title-dark">{t('hero.features.title')}</h2>
-          <p className="section-copy-dark">
-            {t('hero.subtitle')}
-          </p>
           <div className="section-divider" />
         </div>
 
         <div className="relative">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-0 right-0 top-10 hidden h-px bg-gradient-to-r from-transparent via-[#384A9C]/16 to-transparent md:block"
+            className="pointer-events-none absolute bottom-10 left-1/2 top-6 hidden w-px -translate-x-1/2 bg-gradient-to-b from-[#384A9C]/0 via-[#384A9C]/24 to-[#384A9C]/0 md:block"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-[#384A9C]/0 via-[#384A9C]/18 to-[#384A9C]/0 md:block"
-          />
-
-          <div className="grid gap-5 md:grid-cols-2 md:gap-x-7 md:gap-y-6" style={{ fontFamily: 'Inter, sans-serif' }}>
-            {features.map((feature, index) => (
-              <div key={index} className={`${cardOffsets[index] ?? ''}`}>
-                <div
-                  className={`relative overflow-hidden rounded-[1.55rem] border border-slate-200/80 bg-white/90 px-5 py-6 shadow-[0_18px_38px_rgba(15,23,42,0.045)] backdrop-blur-sm transition-transform duration-300 sm:px-6 ${index % 2 === 0 ? 'md:mr-10' : 'md:ml-10'}`}
-                >
-                  <div aria-hidden="true" className="pointer-events-none absolute left-0 top-6 h-14 w-px bg-gradient-to-b from-[#384A9C]/0 via-[#384A9C]/30 to-[#384A9C]/0" />
-                  <div aria-hidden="true" className="pointer-events-none absolute right-5 top-5 h-10 w-10 border-r border-t border-[#384A9C]/14" />
-                  <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#384A9C]/18 to-transparent" />
+          <div className="space-y-5 pb-8 md:space-y-8 md:pb-24" style={{ fontFamily: 'Inter, sans-serif' }}>
+            {featurePairs.map(([leftFeature, rightFeature], index) => (
+              <div
+                key={`${leftFeature}-${rightFeature}`}
+                className="grid gap-5 md:grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)] md:items-start md:gap-0"
+              >
+                <div className={`relative md:pr-12 ${rowOffsets[index]?.left ?? ''}`}>
                   <div
                     aria-hidden="true"
-                    className={`pointer-events-none absolute top-12 hidden h-px w-12 bg-gradient-to-r md:block ${index % 2 === 0 ? 'right-[-3rem] from-[#384A9C]/28 to-transparent' : 'left-[-3rem] from-transparent to-[#384A9C]/28'}`}
+                    className="pointer-events-none absolute right-[-2rem] top-1/2 hidden h-px w-[5rem] -translate-y-1/2 bg-gradient-to-r from-[#384A9C]/28 via-[#384A9C]/24 to-[#384A9C]/28 md:block"
                   />
-                  <div
-                    className={`absolute top-7 hidden h-14 w-14 items-center justify-center rounded-full border border-[#384A9C]/16 bg-white shadow-[0_14px_30px_rgba(15,23,42,0.08)] md:flex ${index % 2 === 0 ? 'right-[-4.25rem]' : 'left-[-4.25rem]'}`}
-                  >
-                    <span className="text-sm font-semibold tracking-[0.18em] text-[#384A9C]">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
+                  <div className="relative flex min-h-[12.5rem] flex-col overflow-hidden rounded-[1.55rem] border border-slate-200/80 bg-gradient-to-b from-white via-[#f8faff] to-[#eef3ff] px-5 py-6 shadow-[0_18px_38px_rgba(15,23,42,0.045)] backdrop-blur-sm transition-transform duration-300 sm:px-6">
+                    <div aria-hidden="true" className="pointer-events-none absolute left-0 top-6 h-14 w-px bg-gradient-to-b from-[#384A9C]/0 via-[#384A9C]/30 to-[#384A9C]/0" />
+                    <div aria-hidden="true" className="pointer-events-none absolute right-5 top-5 h-10 w-10 border-r border-t border-[#384A9C]/14" />
+                    <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#384A9C]/18 to-transparent" />
 
-                  <div className="mb-4 flex items-center justify-between gap-4">
-                    <div
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] border border-[#384A9C]/10 bg-[#384A9C]/[0.08]"
-                    >
-                      <Check className="h-4 w-4" strokeWidth={3} style={{ color: '#384A9C' }} />
+                    <div className="flex flex-1 flex-col justify-center gap-5">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] bg-[#384A9C]">
+                          <Check className="h-4 w-4 text-white" strokeWidth={3} />
+                        </div>
+                      </div>
+
+                      <p className="max-w-[28rem] pr-6 text-[15px] leading-7 text-gray-700 sm:text-base sm:leading-8">
+                        {t(leftFeature)}
+                      </p>
                     </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#384A9C]/60 md:opacity-0">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                   </div>
+                </div>
 
-                  <p className="max-w-[28rem] text-[15px] leading-7 text-gray-700 sm:text-base sm:leading-8">
-                    {t(feature)}
-                  </p>
+                <div className="relative hidden h-full md:block">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute bottom-[-2rem] left-1/2 top-[-2rem] w-px -translate-x-1/2 bg-gradient-to-b from-[#384A9C]/0 via-[#384A9C]/24 to-[#384A9C]/0"
+                  />
+                </div>
+
+                <div className={`relative md:pl-12 ${rowOffsets[index]?.right ?? ''}`}>
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-[-2rem] top-1/2 hidden h-px w-[5rem] -translate-y-1/2 bg-gradient-to-r from-[#384A9C]/28 via-[#384A9C]/24 to-[#384A9C]/28 md:block"
+                  />
+                  <div className="relative flex min-h-[12.5rem] flex-col overflow-hidden rounded-[1.55rem] border border-slate-200/80 bg-gradient-to-b from-white via-[#f8faff] to-[#eef3ff] px-5 py-6 shadow-[0_18px_38px_rgba(15,23,42,0.045)] backdrop-blur-sm transition-transform duration-300 sm:px-6">
+                    <div aria-hidden="true" className="pointer-events-none absolute left-0 top-6 h-14 w-px bg-gradient-to-b from-[#384A9C]/0 via-[#384A9C]/30 to-[#384A9C]/0" />
+                    <div aria-hidden="true" className="pointer-events-none absolute right-5 top-5 h-10 w-10 border-r border-t border-[#384A9C]/14" />
+                    <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#384A9C]/18 to-transparent" />
+
+                    <div className="flex flex-1 flex-col justify-center gap-5">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] bg-[#384A9C]">
+                          <Check className="h-4 w-4 text-white" strokeWidth={3} />
+                        </div>
+                      </div>
+
+                      <p className="max-w-[28rem] pr-6 text-[15px] leading-7 text-gray-700 sm:text-base sm:leading-8">
+                        {t(rightFeature)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
