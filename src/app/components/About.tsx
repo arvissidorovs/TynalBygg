@@ -1,6 +1,7 @@
+import type { CSSProperties } from 'react';
 import placeholder from '../../assets/11.webp';
-import overlapImageOne from '../../assets/41.webp';
-import overlapImageTwo from '../../assets/20.webp';
+import overlapImageOne from '../../assets/53.webp';
+import overlapImageTwo from '../../assets/26.webp';
 import bkrBadge from '../../assets/bkr-behorig-vatrum.svg';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,6 +24,19 @@ const animatedSquares = [
 const animatedSquareMap = new Map(
   animatedSquares.map((square) => [`${square.col}-${square.row}`, square])
 );
+
+const aboutImageStackStyles: CSSProperties = {
+  '--about-stage-height': 'clamp(44rem, 78vw, 54rem)',
+  '--about-main-image-height': 'clamp(35rem, 64vw, 44rem)',
+  '--about-left-card-width': 'clamp(10rem, 44vw, 20rem)',
+  '--about-left-card-image-height': 'clamp(8rem, 44vw, 16rem)',
+  '--about-left-card-left': 'clamp(-5rem, 4vw, -0.5rem)',
+  '--about-left-card-bottom': 'clamp(0rem, 24vw, -6rem)',
+  '--about-right-card-width': 'clamp(10rem, 44vw, 20rem)',
+  '--about-right-card-image-height': 'clamp(8rem, 44vw, 16rem)',
+  '--about-right-card-right': 'clamp(-10rem, 4vw, 0rem)',
+  '--about-right-card-top': 'clamp(-8rem, 24vw, -4rem)'
+};
 
 export function About() {
   const { t } = useLanguage();
@@ -76,8 +90,8 @@ export function About() {
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Image Side */}
           <div className="order-2 lg:order-1">
-            <div className="relative h-[660px] sm:h-[720px] lg:h-[700px]">
-              <div className="relative h-[560px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/25 sm:h-[600px]">
+            <div className="relative [height:var(--about-stage-height)]" style={aboutImageStackStyles}>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/25 [height:var(--about-main-image-height)]">
                 <div aria-hidden="true" className="pointer-events-none absolute left-4 top-4 z-10 h-14 w-14 border-l border-t border-white/30" />
                 <div aria-hidden="true" className="pointer-events-none absolute bottom-4 right-4 z-10 h-20 w-20 border-b border-r border-[#D7DEFF]/30" />
                 <div aria-hidden="true" className="pointer-events-none absolute -left-5 top-14 hidden h-32 w-10 lg:block">
@@ -95,21 +109,21 @@ export function About() {
                 />
               </div>
 
-              <div className="absolute bottom-3 left-3 z-20 w-[10.5rem] rotate-[-6deg] overflow-hidden rounded-[1.2rem] border border-white/8 bg-white/[0.025] p-1 shadow-[0_20px_44px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[-9deg] sm:bottom-4 sm:left-4 sm:w-[12rem] md:bottom-5 md:left-6 md:w-[14rem] lg:bottom-6 lg:left-4 lg:w-[16rem]">
+              <div className="absolute bottom-[var(--about-left-card-bottom)] left-[var(--about-left-card-left)] z-20 w-[var(--about-left-card-width)] rotate-[-6deg] overflow-hidden rounded-[1.2rem] border border-white/8 bg-white/[0.025] p-1 shadow-[0_20px_44px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[-9deg]">
                 <ImageWithFallback
                   src={overlapImageOne}
                   alt="Construction framing in progress"
-                  className="h-28 w-full rounded-[0.9rem] object-cover sm:h-32 md:h-40 lg:h-48"
+                  className="h-[var(--about-left-card-image-height)] w-full rounded-[0.9rem] object-cover"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
 
-              <div className="absolute right-2 top-3 z-20 w-[9rem] rotate-[5deg] overflow-hidden rounded-[1.2rem] border border-white/8 bg-white/[0.025] p-1 shadow-[0_20px_44px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[8deg] sm:right-3 sm:top-4 sm:w-[10rem] md:right-5 md:top-6 md:w-[11.5rem] lg:right-4 lg:top-8 lg:w-[13.5rem]">
+              <div className="absolute right-[var(--about-right-card-right)] top-[var(--about-right-card-top)] z-20 w-[var(--about-right-card-width)] rotate-[5deg] overflow-hidden rounded-[1.2rem] border border-white/8 bg-white/[0.025] p-1 shadow-[0_20px_44px_rgba(0,0,0,0.2)] transition-transform duration-500 ease-out hover:-translate-y-2 hover:rotate-[8deg]">
                 <ImageWithFallback
                   src={overlapImageTwo}
                   alt="Finished interior renovation"
-                  className="h-24 w-full rounded-[0.9rem] object-cover sm:h-28 md:h-36 lg:h-44"
+                  className="h-[var(--about-right-card-image-height)] w-full rounded-[0.9rem] object-cover"
                   loading="lazy"
                   decoding="async"
                 />
